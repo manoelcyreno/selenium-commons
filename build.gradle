@@ -1,17 +1,43 @@
-// Apply the java plugin to add support for Java
+/*
+	gradle clean test 		- Rebuild and run tests
+	gradle test 			- Run tests only
+	gradle cleanTest test  	- Force tests to be run even if up to date
+	gradle viewResults		- Displays the report of test results (Windows only)
+*/
+
+// Support for building and testing
 apply plugin: 'java'
 
-// In this section you declare where to find the dependencies of your project
-repositories {
-    // Use 'jcenter' for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+// (Optional) configure name and version for jar
+jar {
+	version  '1.0'
+	baseName 'SeleniumStarter'
+	extension '.jar'
 }
 
-// In this section you declare the dependencies for your production and test code
+// Cf. Maven properties
+ext.junitVersion = '4.12'
+ext.seleniumVersion = '3.0.0'
+
+
+// Cf. Maven <dependencies>
 dependencies {
+	compile group: 'junit', name: 'junit', version:junitVersion
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version:seleniumVersion
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version:seleniumVersion
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version:seleniumVersion
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version:seleniumVersion
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version:seleniumVersion
+}
 
-    compile 'org.slf4j:slf4j-api:1.7.21'
-
-    testCompile 'junit:junit:4.12'
+// A custom task to show report on tests that have run
+task viewResults(dependsOn: ['test'] , type:Exec) {
+		workingDir './build/reports/tests'		
+		commandLine 'cmd', '/c', 'start index.html'	
+}
+ 
+// Resolve Maven dependencies as Maven does
+repositories {
+	mavenCentral()
+	mavenLocal() 
 }
