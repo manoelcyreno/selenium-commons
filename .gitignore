@@ -125,6 +125,10 @@ hs_err_pid*
 ### Gradle ###
 .gradle
 /build/
+/caches/
+/daemon/
+/native/
+/wrapper/
 
 # Ignore Gradle GUI config
 gradle-app.setting
