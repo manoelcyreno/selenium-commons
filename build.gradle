@@ -6,13 +6,53 @@
 */
 
 // Support for building and testing
-apply plugin: 'java'
 
-// (Optional) configure name and version for jar
-jar {
-	version  '1.0'
-	baseName 'SeleniumStarter'
-	extension '.jar'
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+}
+
+
+repositories {
+  jcenter()
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+
+publishing {
+	publications {
+		selelinumBintrayPub(MavenPublication) {
+			from components.java
+			groupId 'com.liferay.gs.commons'
+      artifactId 'lfrgs-selenium-commons'
+      version '0.2'
+		}
+	}
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['selelinumBintrayPub']
+    pkg {
+        repo = 'maven'
+        name = 'lfrgs-selenium-commons'
+        userOrg = "gallindo"
+        labels = ['test', 'selenium', 'liferay', 'gs']
+        licenses = ['Apache-2.0']
+        publicDownloadNumbers = true
+        vcsUrl = 'https://github.com/gallindo/lfrgs-selenium-commons.git'
+        version {
+            name = '0.2'
+            desc = 'Selenium framework for Liferay GS projects'
+            released  = new Date()
+            vcsTag = '0.2'
+            //attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
 }
 
 // Cf. Maven properties
@@ -32,12 +72,12 @@ dependencies {
 
 // A custom task to show report on tests that have run
 task viewResults(dependsOn: ['test'] , type:Exec) {
-		workingDir './build/reports/tests'		
-		commandLine 'cmd', '/c', 'start index.html'	
+		workingDir './build/reports/tests'
+		commandLine 'cmd', '/c', 'start index.html'
 }
- 
+
 // Resolve Maven dependencies as Maven does
 repositories {
 	mavenCentral()
-	mavenLocal() 
+	mavenLocal()
 }
