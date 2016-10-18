@@ -2,6 +2,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -9,7 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.liferay.gs.BaseTestCase;
-
+import com.liferay.gs.Selenium;
 import com.liferay.gs.UtilsKeys;
 import com.liferay.gs.WaitUtils;
 
@@ -21,6 +22,11 @@ public class GoogleTest extends BaseTestCase {
 	public void setUp() {
 		UtilsKeys.DRIVER.get(UtilsKeys.getUrlToHome());
 		UtilsKeys.DRIVER.manage().timeouts().implicitlyWait(UtilsKeys.getTimeOut(), TimeUnit.SECONDS);
+	}
+
+	@After
+	public void after() {
+		Selenium.quit();
 	}
 
 	@Test

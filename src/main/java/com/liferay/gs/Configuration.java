@@ -13,7 +13,6 @@ public class Configuration {
 
 	public static String getString(String key) {
 		try {
-			System.out.println("getString():" + key);
 			return RESOURCE_BUNDLE.getString(key);
 		} catch (MissingResourceException e) {
 			return '!' + key + '!';

@@ -11,8 +11,7 @@ public class BaseTestCase {
 
 	@BeforeClass
 	public static void beforeClass() {
-		System.out.println("beforeClass(): comentado");
-		// validateRequiredRunEnvironment();
+		validateRequiredRunEnvironment();
 	};
 
 	@AfterClass

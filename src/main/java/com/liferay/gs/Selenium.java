@@ -27,6 +27,7 @@ public final class Selenium {
 			Capabilities cap = ((FirefoxDriver) getDriver()).getCapabilities();
 
 			String mainVersion = cap.getVersion().split("\\.")[0];
+			System.out.println("FF version: " + mainVersion);
 
 			float currentVersion = Float.valueOf(mainVersion);
 			float maxValidVersion = Float.valueOf(UtilsKeys.getUpToFirefoxVersion());
@@ -34,6 +35,7 @@ public final class Selenium {
 			validVersion = currentVersion <= maxValidVersion;
 		}
 
+		System.out.println("validVersion: " + validVersion);
 		return validVersion;
 	}
 
@@ -47,8 +49,6 @@ public final class Selenium {
 	private static void initDriver() {
 		try {
 			DesiredCapabilities capabilities = new DesiredCapabilities();
-
-			System.out.println("initDriver(): " + UtilsKeys.getPlatformName());
 
 			switch (UtilsKeys.getPlatformName()) {
 			case "ie":
