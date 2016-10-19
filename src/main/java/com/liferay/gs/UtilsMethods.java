@@ -88,12 +88,4 @@ public class UtilsMethods {
 	// // do nothing
 	// }
 	// }
-
-	public static String getMarionetteDriverPath() {
-		Path whereIam = Paths.get(Configuration.class.getResource("/").getFile());
-		Path rootRepository = whereIam.getParent();
-		String marionetteDriverPath = rootRepository
-				+ "/src/main/executables/geckodriver";
-		return marionetteDriverPath;
-	}
 }

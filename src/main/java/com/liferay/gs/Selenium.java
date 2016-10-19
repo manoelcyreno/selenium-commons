@@ -17,6 +17,7 @@ public final class Selenium {
 
 	private static String SeleniumGridMachine = UtilsKeys.getSeleniumGridMachine();
 	private static String PhantomJS_Path = UtilsKeys.getPhantomJSPath();
+	private static String GeckoDriver_Path = UtilsKeys.getGeckoDriverPath();
 
 	public static boolean isValidBrowser() {
 
@@ -24,10 +25,15 @@ public final class Selenium {
 
 		if (getDriver() instanceof FirefoxDriver) {
 
-			Capabilities cap = ((FirefoxDriver) getDriver()).getCapabilities();
+			Capabilities cap = ((RemoteWebDriver) getDriver()).getCapabilities();
 
 			String mainVersion = cap.getVersion().split("\\.")[0];
-			System.out.println("FF version: " + mainVersion);
+
+			System.out.println(cap.getBrowserName().toLowerCase());
+			System.out.println(cap.getPlatform().toString());
+			System.out.println(cap.getVersion().toString());
+
+			System.out.println("FF version: " + cap.getVersion());
 
 			float currentVersion = Float.valueOf(mainVersion);
 			float maxValidVersion = Float.valueOf(UtilsKeys.getUpToFirefoxVersion());
@@ -81,7 +87,7 @@ public final class Selenium {
 
 	private static void configureDefault() {
 		DesiredCapabilities cap = DesiredCapabilities.firefox();
-		System.setProperty("webdriver.gecko.driver", UtilsMethods.getMarionetteDriverPath());
+		System.setProperty("webdriver.gecko.driver", GeckoDriver_Path);
 		cap.setCapability("marionette", true);
 		driver = new FirefoxDriver(cap);
 	}

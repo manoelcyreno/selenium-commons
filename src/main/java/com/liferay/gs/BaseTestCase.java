@@ -11,7 +11,7 @@ public class BaseTestCase {
 
 	@BeforeClass
 	public static void beforeClass() {
-		validateRequiredRunEnvironment();
+		// validateRequiredRunEnvironment();
 	};
 
 	@AfterClass

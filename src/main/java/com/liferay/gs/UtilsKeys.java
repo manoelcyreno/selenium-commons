@@ -13,6 +13,7 @@ public class UtilsKeys {
 	private static String URL_LOGOUT = null;
 	private static String SELENIUM_GRID_IP = null;
 	private static String PHANTOMJS_PATH = null;
+	private static String GECKODRIVER_PATH = null;
 
 	public static int getTimeOut() {
 		TIME_OUT = Configuration.getString("time-out");
@@ -48,6 +49,11 @@ public class UtilsKeys {
 	public static String getPhantomJSPath() {
 		PHANTOMJS_PATH = Configuration.getString("PhantomJS_Path");
 		return PHANTOMJS_PATH;
+	}
+
+	public static String getGeckoDriverPath() {
+		GECKODRIVER_PATH = Configuration.getString("GeckoDriver_Path");
+		return GECKODRIVER_PATH;
 	}
 
 }
