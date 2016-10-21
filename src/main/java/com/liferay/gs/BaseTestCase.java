@@ -15,7 +15,6 @@ public class BaseTestCase {
 
 	@AfterClass
 	public static void afterClass() {
-		Selenium.quit();
 	};
 
 }
