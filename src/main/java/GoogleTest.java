@@ -10,10 +10,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.liferay.gs.BaseTestCase;
-import com.liferay.gs.Selenium;
-import com.liferay.gs.UtilsKeys;
-import com.liferay.gs.WaitUtils;
+import com.liferay.gs.testFramework.BaseTestCase;
+import com.liferay.gs.testFramework.Selenium;
+import com.liferay.gs.testFramework.UtilsKeys;
+import com.liferay.gs.testFramework.WaitUtils;
 
 public class GoogleTest extends BaseTestCase {
 
@@ -35,7 +35,7 @@ public class GoogleTest extends BaseTestCase {
 	}
 
 	@Test
-	public void goToGooglePageAndAccessTheFirstResult() {
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithWrongTitle() {
 		WaitUtils.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
 				ExpectedConditions::elementToBeClickable);
 		UtilsKeys.DRIVER.findElement(searchLocator).clear();
@@ -49,7 +49,7 @@ public class GoogleTest extends BaseTestCase {
 	}
 
 	@Test
-	public void goToGooglePageAndAccessTheFirstResult2() {
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle() {
 		WaitUtils.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
 				ExpectedConditions::elementToBeClickable);
 		UtilsKeys.DRIVER.findElement(searchLocator).clear();

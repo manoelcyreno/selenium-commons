@@ -1,4 +1,4 @@
-package com.liferay.gs;
+package com.liferay.gs.testFramework;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

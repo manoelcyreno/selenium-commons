@@ -1,4 +1,4 @@
-package com.liferay.gs;
+package com.liferay.gs.testFramework;
 import org.openqa.selenium.WebDriver;
 
 public class UtilsKeys {

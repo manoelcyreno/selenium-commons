@@ -1,4 +1,4 @@
-import com.liferay.gs.UtilsMethods;
+import com.liferay.gs.testFramework.UtilsMethods;
 
 public class DummyClass {
 

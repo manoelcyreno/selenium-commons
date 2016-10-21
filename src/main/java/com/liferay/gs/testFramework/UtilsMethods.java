@@ -1,4 +1,4 @@
-package com.liferay.gs;
+package com.liferay.gs.testFramework;
 
 import java.awt.Rectangle;
 import java.awt.Robot;

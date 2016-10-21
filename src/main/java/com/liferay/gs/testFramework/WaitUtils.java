@@ -1,4 +1,4 @@
-package com.liferay.gs;
+package com.liferay.gs.testFramework;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
