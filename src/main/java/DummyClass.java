@@ -5,7 +5,6 @@ public class DummyClass {
 	public static void main(String[] args) {
 		texts();
 		takeScreenshot();
-		System.out.println(UtilsMethods.getPathOfFileJPG());
 		removeScreenshot();
 	}
 
@@ -14,7 +13,14 @@ public class DummyClass {
 	}
 
 	private static void takeScreenshot() {
-		UtilsMethods.setPathToAttachFileJPG();
+		UtilsMethods.setPathToAttachFile("png");
+		System.out.println(UtilsMethods.getPathOfImageFile());
+		UtilsMethods.setPathToAttachFile("jpeg");
+		System.out.println(UtilsMethods.getPathOfImageFile());
+		UtilsMethods.setPathToAttachFile("jpg");
+		System.out.println(UtilsMethods.getPathOfImageFile());
+		UtilsMethods.setPathToAttachFile("gif");
+		System.out.println(UtilsMethods.getPathOfImageFile());
 	}
 
 	private static void removeScreenshot() {

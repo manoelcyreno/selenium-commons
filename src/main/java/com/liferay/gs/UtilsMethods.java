@@ -21,7 +21,7 @@ public class UtilsMethods {
 	 * localhost environment Else, the environment will be the Selenium Grid
 	 * environment, in this case the image exist in another directory.
 	 */
-	public static void setPathToAttachFileJPG() {
+	public static void setPathToAttachFile(String imageExtension) {
 
 		Date data = new Date();
 
@@ -29,10 +29,10 @@ public class UtilsMethods {
 			try {
 				Thread.sleep(1000);
 				new File("reports/screenshots/").mkdirs();
-				imagePath = "Screenshot_" + data.getTime() + "-screenshot.jpg";
+				imagePath = "Screenshot_" + data.getTime() + "-screenshot." + imageExtension;
 				BufferedImage image = new Robot()
 						.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-				ImageIO.write(image, "jpg", new File("reports/screenshots/" + imagePath));
+				ImageIO.write(image, imageExtension, new File("reports/screenshots/" + imagePath));
 			} catch (Exception e) {
 				System.out.println(e);
 			}
@@ -40,11 +40,11 @@ public class UtilsMethods {
 			Random numberGenerator = new Random();
 			String pathToSaveTheFile = UtilsKeys.getAttachFilePath();
 			int number = numberGenerator.nextInt(5) + 1;
-			imagePath = pathToSaveTheFile + "0" + number + ".jpg";
+			imagePath = pathToSaveTheFile + "0" + number + "." + imageExtension;
 		}
 	}
 
-	public static String getPathOfFileJPG() {
+	public static String getPathOfImageFile() {
 		if (UtilsKeys.getPlatformName().equalsIgnoreCase("default")) {
 			Path whereIam = Paths.get(Configuration.class.getResource("/").getFile());
 			Path rootRepository = whereIam.getParent();
