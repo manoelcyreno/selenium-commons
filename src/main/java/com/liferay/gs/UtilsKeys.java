@@ -14,11 +14,17 @@ public class UtilsKeys {
 	private static String SELENIUM_GRID_IP = null;
 	private static String PHANTOMJS_PATH = null;
 	private static String GECKODRIVER_PATH = null;
+	private static String ATTACH_FILE_PATH = null;
 
 	public static int getTimeOut() {
 		TIME_OUT = Configuration.getString("time-out");
 		int timeOut = Integer.parseInt(TIME_OUT);
 		return timeOut;
+	}
+
+	public static String getAttachFilePath() {
+		ATTACH_FILE_PATH = Configuration.getString("PathWithAttachFiles");
+		return ATTACH_FILE_PATH;
 	}
 
 	public static String getUpToFirefoxVersion() {

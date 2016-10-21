@@ -11,17 +11,11 @@ public class BaseTestCase {
 
 	@BeforeClass
 	public static void beforeClass() {
-		// validateRequiredRunEnvironment();
 	};
 
 	@AfterClass
 	public static void afterClass() {
+		Selenium.quit();
 	};
-
-	private static void validateRequiredRunEnvironment() {
-		if (!Selenium.isValidBrowser()) {
-			throw new IllegalStateException("Invalid browser version.");
-		}
-	}
 
 }

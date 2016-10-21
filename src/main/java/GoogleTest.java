@@ -10,7 +10,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.liferay.gs.BaseTestCase;
-import com.liferay.gs.Selenium;
 import com.liferay.gs.UtilsKeys;
 import com.liferay.gs.WaitUtils;
 
@@ -26,7 +25,6 @@ public class GoogleTest extends BaseTestCase {
 
 	@After
 	public void after() {
-		Selenium.quit();
 	}
 
 	@Test
@@ -40,7 +38,20 @@ public class GoogleTest extends BaseTestCase {
 				ExpectedConditions::visibilityOfElementLocated, ExpectedConditions::elementToBeClickable);
 		UtilsKeys.DRIVER.findElement(By.linkText("Selenium - Web Browser Automation")).click();
 		WaitUtils.getWaitDriver().until(ExpectedConditions.titleContains("Automation"));
-		assertEquals("Selenium - Web Browser Automation", UtilsKeys.DRIVER.getTitle());
+		assertEquals("Selenium - Web Browser Automation2", UtilsKeys.DRIVER.getTitle());
 	}
 
+	@Test
+	public void goToGooglePageAndAccessTheFirstResult2() {
+		WaitUtils.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
+				ExpectedConditions::elementToBeClickable);
+		UtilsKeys.DRIVER.findElement(searchLocator).clear();
+		UtilsKeys.DRIVER.findElement(searchLocator).sendKeys("seleniumhq");
+		UtilsKeys.DRIVER.findElement(searchLocator).sendKeys(Keys.ENTER);
+		WaitUtils.findElementWithWaitDriver(By.linkText("Selenium - Web Browser Automation"),
+				ExpectedConditions::visibilityOfElementLocated, ExpectedConditions::elementToBeClickable);
+		UtilsKeys.DRIVER.findElement(By.linkText("Selenium - Web Browser Automation")).click();
+		WaitUtils.getWaitDriver().until(ExpectedConditions.titleContains("Automation"));
+		assertEquals("Selenium - Web Browser Automation", UtilsKeys.DRIVER.getTitle());
+	}
 }

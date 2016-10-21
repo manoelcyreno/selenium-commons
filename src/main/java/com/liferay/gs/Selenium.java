@@ -1,4 +1,5 @@
 package com.liferay.gs;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 

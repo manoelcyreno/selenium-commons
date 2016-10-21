@@ -1,10 +1,24 @@
-import com.liferay.gs.Configuration;
+import com.liferay.gs.UtilsMethods;
 
 public class DummyClass {
 
 	public static void main(String[] args) {
-		System.out.println("I'm here !");
-		System.out.println(Configuration.getString("environment"));
-		System.out.println(Configuration.getString("browser"));
+		texts();
+		takeScreenshot();
+		System.out.println(UtilsMethods.getPathOfFileJPG());
+		removeScreenshot();
 	}
+
+	private static void texts() {
+		System.out.println("I'm here !");
+	}
+
+	private static void takeScreenshot() {
+		UtilsMethods.setPathToAttachFileJPG();
+	}
+
+	private static void removeScreenshot() {
+		UtilsMethods.removeScreenshots();
+	}
+
 }
