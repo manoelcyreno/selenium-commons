@@ -40,7 +40,7 @@ bintray {
     pkg {
         repo = 'maven'
         name = 'lfrgs-selenium-commons'
-        userOrg = "gallindo"
+        userOrg = System.getenv('BINTRAY_USER')
         labels = ['test', 'selenium', 'liferay', 'gs']
         licenses = ['Apache-2.0']
         publicDownloadNumbers = true
