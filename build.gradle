@@ -28,7 +28,7 @@ publishing {
 			from components.java
 			groupId 'com.liferay.gs.commons'
       artifactId 'lfrgs-selenium-commons'
-      version '0.3'
+      version '0.4'
 		}
 	}
 }
@@ -46,10 +46,10 @@ bintray {
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/gallindo/lfrgs-selenium-commons.git'
         version {
-            name = '0.3'
+            name = '0.4'
             desc = 'Selenium framework for Liferay GS projects'
             released  = new Date()
-            vcsTag = '0.3'
+            vcsTag = '0.4'
             //attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }
