@@ -1,9 +1,9 @@
 package com.liferay.gs.testFramework;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -19,38 +19,19 @@ public final class Selenium {
 	private static String SeleniumGridMachine = UtilsKeys.getSeleniumGridMachine();
 	private static String PhantomJS_Path = UtilsKeys.getPhantomJSPath();
 	private static String GeckoDriver_Path = UtilsKeys.getGeckoDriverPath();
-
-	public static boolean isValidBrowser() {
-
-		boolean validVersion = true;
-
-		if (getDriver() instanceof FirefoxDriver) {
-
-			Capabilities cap = ((RemoteWebDriver) getDriver()).getCapabilities();
-
-			String mainVersion = cap.getVersion().split("\\.")[0];
-
-			System.out.println(cap.getBrowserName().toLowerCase());
-			System.out.println(cap.getPlatform().toString());
-			System.out.println(cap.getVersion().toString());
-
-			System.out.println("FF version: " + cap.getVersion());
-
-			float currentVersion = Float.valueOf(mainVersion);
-			float maxValidVersion = Float.valueOf(UtilsKeys.getUpToFirefoxVersion());
-
-			validVersion = currentVersion <= maxValidVersion;
-		}
-
-		System.out.println("validVersion: " + validVersion);
-		return validVersion;
-	}
+	private static String configurationErrorMessage = null;
 
 	public static WebDriver getDriver() {
-		if (driver == null) {
-			initDriver();
+		if (defaultPropertiesFilePathWasConfigured() == true) {
+			if (driver == null) {
+				initDriver();
+			}
+			return driver;
+		} else {
+			System.out.println(configurationErrorMessage);
+			return null;
 		}
-		return driver;
+
 	}
 
 	private static void initDriver() {
@@ -87,10 +68,14 @@ public final class Selenium {
 	}
 
 	private static void configureDefault() {
-		DesiredCapabilities cap = DesiredCapabilities.firefox();
-		System.setProperty("webdriver.gecko.driver", GeckoDriver_Path);
-		cap.setCapability("marionette", true);
-		driver = new FirefoxDriver(cap);
+		if (geckoDriverWasConfigured() == true) {
+			DesiredCapabilities cap = DesiredCapabilities.firefox();
+			System.setProperty("webdriver.gecko.driver", GeckoDriver_Path);
+			cap.setCapability("marionette", true);
+			driver = new FirefoxDriver(cap);
+		} else {
+			System.out.println(configurationErrorMessage);
+		}
 	}
 
 	private static void configureIE(DesiredCapabilities capabilities) throws MalformedURLException {
@@ -109,13 +94,54 @@ public final class Selenium {
 	}
 
 	private static void configurePhantomJS(DesiredCapabilities capabilities) throws MalformedURLException {
-		capabilities.setBrowserName("PhantomJS");
-		capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, PhantomJS_Path);
-		driver = new PhantomJSDriver(capabilities);
+		if (phantomJSWasConfigured() == true) {
+			capabilities.setBrowserName("PhantomJS");
+			capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, PhantomJS_Path);
+			driver = new PhantomJSDriver(capabilities);
+		} else {
+			System.out.println(configurationErrorMessage);
+		}
 	}
 
 	public static void quit() {
 		driver.quit();
 		driver = null;
 	}
+
+	private static boolean geckoDriverWasConfigured() {
+		File genckoDriverFile = new File(GeckoDriver_Path);
+		if (genckoDriverFile.exists() == true && genckoDriverFile.canExecute() == true) {
+			configurationErrorMessage = "The geckodriver was configured correctly";
+			return true;
+		} else {
+			configurationErrorMessage = "The geckodriver should be configured in '" + GeckoDriver_Path
+					+ "' according the project wiki.";
+			return false;
+		}
+	}
+
+	private static boolean phantomJSWasConfigured() {
+		File phantomJSDriverFile = new File(PhantomJS_Path);
+		if (phantomJSDriverFile.exists() == true && phantomJSDriverFile.canExecute() == true) {
+			configurationErrorMessage = "The phantomJS was configured correctly";
+			return true;
+		} else {
+			configurationErrorMessage = "The phantomJS should be configured in '" + PhantomJS_Path
+					+ "' according the project wiki.";
+			return false;
+		}
+	}
+
+	private static boolean defaultPropertiesFilePathWasConfigured() {
+		File defaultPropertiesFile = new File(UtilsKeys.getDefaultPropertiesFilePath());
+		if (defaultPropertiesFile.exists() == true && defaultPropertiesFile.canRead() == true) {
+			configurationErrorMessage = "The defaultProperties.properties file was configured correctly";
+			return true;
+		} else {
+			configurationErrorMessage = "The defaultProperties.properties should be configured in '"
+					+ UtilsKeys.getDefaultPropertiesFilePath() + "' according the project wiki.";
+			return false;
+		}
+	}
+
 }

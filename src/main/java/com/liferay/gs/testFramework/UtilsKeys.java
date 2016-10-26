@@ -7,7 +7,6 @@ public class UtilsKeys {
 
 	private static String TIME_OUT = null;
 
-	private static String VALID_UP_TO_FIREFOX_VERSION_KEY = null;
 	private static String PLATFORM_NAME = null;
 	private static String URL = null;
 	private static String URL_LOGOUT = null;
@@ -15,40 +14,36 @@ public class UtilsKeys {
 	private static String PHANTOMJS_PATH = null;
 	private static String GECKODRIVER_PATH = null;
 	private static String ATTACH_FILE_PATH = null;
+	private static String DEFAULT_PROPERTIES_FILE_PATH = null;
 
 	public static int getTimeOut() {
-		TIME_OUT = Configuration.getString("time-out");
+		TIME_OUT = ReadProperties.getConfigigurationOfPropertiesFile("time-out");
 		int timeOut = Integer.parseInt(TIME_OUT);
 		return timeOut;
 	}
 
 	public static String getAttachFilePath() {
-		ATTACH_FILE_PATH = Configuration.getString("PathWithAttachFiles");
+		ATTACH_FILE_PATH = ReadProperties.getConfigigurationOfPropertiesFile("PathWithAttachFiles");
 		return ATTACH_FILE_PATH;
 	}
 
-	public static String getUpToFirefoxVersion() {
-		VALID_UP_TO_FIREFOX_VERSION_KEY = Configuration.getString("valid-up-to-firefox-version");
-		return VALID_UP_TO_FIREFOX_VERSION_KEY;
-	}
-
 	public static String getPlatformName() {
-		PLATFORM_NAME = Configuration.getString("browser");
+		PLATFORM_NAME = ReadProperties.getConfigigurationOfPropertiesFile("browser");
 		return PLATFORM_NAME;
 	}
 
 	public static String getUrlToHome() {
-		URL = Configuration.getString("environment");
+		URL = ReadProperties.getConfigigurationOfPropertiesFile("environment");
 		return URL;
 	}
 
 	public static String getLinkToLogOut() {
-		URL_LOGOUT = Configuration.getString("linkToLogOut");
+		URL_LOGOUT = ReadProperties.getConfigigurationOfPropertiesFile("linkToLogOut");
 		return URL_LOGOUT;
 	}
 
 	public static String getSeleniumGridMachine() {
-		SELENIUM_GRID_IP = Configuration.getString("SeleniumGridMachine");
+		SELENIUM_GRID_IP = ReadProperties.getConfigigurationOfPropertiesFile("SeleniumGridMachine");
 		return SELENIUM_GRID_IP;
 	}
 
@@ -60,6 +55,11 @@ public class UtilsKeys {
 	public static String getGeckoDriverPath() {
 		GECKODRIVER_PATH = Configuration.getString("GeckoDriver_Path");
 		return GECKODRIVER_PATH;
+	}
+
+	public static String getDefaultPropertiesFilePath() {
+		DEFAULT_PROPERTIES_FILE_PATH = Configuration.getString("defaultPropertiesFile");
+		return DEFAULT_PROPERTIES_FILE_PATH;
 	}
 
 }
