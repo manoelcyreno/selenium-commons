@@ -66,11 +66,15 @@ public class UtilsMethods {
 			Path rootRepository = whereIam.getParent();
 			imagePath = rootRepository + "/reports/screenshots/";
 			File folder = new File(imagePath);
-			File[] files = folder.listFiles();
-			for (File file : files) {
-				if (file.getName().startsWith("Screenshot_")) {
-					file.delete();
+			if (folder.exists() == true && folder.listFiles().length > 0) {
+				File[] files = folder.listFiles();
+				for (File file : files) {
+					if (file.getName().startsWith("Screenshot_")) {
+						file.delete();
+					}
 				}
+			} else {
+				// do nothing
 			}
 		} else {
 			// do nothing
