@@ -9,6 +9,7 @@
 
 plugins {
     id "com.jfrog.bintray" version "1.7"
+    id "de.undercouch.download" version "3.1.2"
 }
 
 
@@ -74,6 +75,81 @@ dependencies {
 task viewResults(dependsOn: ['test'] , type:Exec) {
 		workingDir './build/reports/tests'
 		commandLine 'cmd', '/c', 'start index.html'
+}
+
+task setupSelenium(){
+
+    def configurationProperties = new Properties()
+    file("src/main/resources/com/liferay/gs/testFramework/configuration.properties").withInputStream {
+        stream -> configurationProperties.load(stream)
+    }
+
+    def defaultPropertiesPath = configurationProperties['defaultPropertiesFile']
+    def phantomJSPath = configurationProperties['PhantomJS_Path']
+    def geckoDriverPath = configurationProperties['GeckoDriver_Path']
+    def webDriversPath =  configurationProperties['webDrivers_Path']
+    def webDriversFile = new File( webDriversPath )
+
+    /*
+     * ********************************************************
+     * CREATE PROPERTIES FILE
+     * ********************************************************
+     */
+    def defaultPropertiesFile = new File( defaultPropertiesPath )
+
+    if( !defaultPropertiesFile.exists() ) {
+      defaultPropertiesFile.getParentFile().mkdirs()
+
+      defaultPropertiesFile.withWriterAppend { w ->
+          w <<  "environment=http://www.google.com.br\nlinkToLogOut=:8080/c/portal/logout\nSeleniumGridMachine=http://cloud-10-0-40-32:5555/wd/hub\n\n#The browser atribute to use SELENIUM GRID should be received: firefox, chrome, ie.\n#For use a localhost configuration (Selenium IDE) set to use \"default\" for use the Firefox or phantomjs.\nbrowser=default\ntime-out=30\n\n#The standard of the files should be: 01.jpg until 05.jpg\n#This Path will be used on Remote Browsers (by Selenium Grid)\nPathWithAttachFiles=C:\\\\screenshots\\\n"
+      }
+    }
+
+
+    /*
+     * ********************************************************
+     * INSTALL PHANTOMJS
+     * ********************************************************
+     */
+    def phantomJSFile = new File( phantomJSPath )
+
+    if( !phantomJSFile.exists() ) {
+        webDriversFile.mkdirs()
+
+        download {
+            src 'https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-macosx.zip'
+            dest new File(webDriversPath, 'phantomjs-2.1.1-macosx.zip')
+        }
+
+        copy {
+            from zipTree(new File(webDriversPath, 'phantomjs-2.1.1-macosx.zip'))
+            into webDriversFile
+        }
+
+        def phantomJSDir = new File(webDriversPath, 'phantomjs-2.1.1-macosx')
+        phantomJSDir.renameTo(new File(webDriversPath, 'phantomjs'))
+    }
+
+    /*
+     * ********************************************************
+     * INSTALL GECKO DRIVER
+     * ********************************************************
+     */
+    def geckoDriverFile = new File( geckoDriverPath )
+
+    if( !geckoDriverFile.exists() ) {
+        webDriversFile.mkdirs()
+
+        download {
+            src 'https://github.com/mozilla/geckodriver/releases/download/v0.11.1/geckodriver-v0.11.1-macos.tar.gz'
+            dest new File(webDriversPath, 'geckodriver-v0.11.1-macos.tar.gz')
+        }
+
+        copy {
+            from tarTree(new File(webDriversPath, 'geckodriver-v0.11.1-macos.tar.gz'))
+            into webDriversFile
+        }
+    }
 }
 
 // Resolve Maven dependencies as Maven does
