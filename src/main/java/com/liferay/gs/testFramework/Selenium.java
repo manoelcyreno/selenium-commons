@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -19,6 +20,7 @@ public final class Selenium {
 	private static String SeleniumGridMachine = UtilsKeys.getSeleniumGridMachine();
 	private static String PhantomJS_Path = UtilsKeys.getPhantomJSPath();
 	private static String GeckoDriver_Path = UtilsKeys.getGeckoDriverPath();
+	private static String ChromeDriver_Path = UtilsKeys.getChromeDriverPath();
 	private static String configurationErrorMessage = null;
 
 	public static WebDriver getDriver() {
@@ -47,8 +49,12 @@ public final class Selenium {
 				configureChrome();
 				break;
 
-			case "default":
-				configureDefault();
+			case "defaultFF":
+				configureDefaultFF();
+				break;
+
+			case "defaultGC":
+				configureDefaultGC();
 				break;
 
 			case "firefox":
@@ -67,12 +73,21 @@ public final class Selenium {
 		}
 	}
 
-	private static void configureDefault() {
+	private static void configureDefaultFF() {
 		if (geckoDriverWasConfigured() == true) {
 			DesiredCapabilities cap = DesiredCapabilities.firefox();
 			System.setProperty("webdriver.gecko.driver", GeckoDriver_Path);
 			cap.setCapability("marionette", true);
 			driver = new FirefoxDriver(cap);
+		} else {
+			System.out.println(configurationErrorMessage);
+		}
+	}
+
+	private static void configureDefaultGC() {
+		if (chromeDriverWasConfigured() == true) {
+			System.setProperty("webdriver.chrome.driver", ChromeDriver_Path);
+			driver = new ChromeDriver();
 		} else {
 			System.out.println(configurationErrorMessage);
 		}
@@ -115,6 +130,18 @@ public final class Selenium {
 			return true;
 		} else {
 			configurationErrorMessage = "The geckodriver should be configured in '" + GeckoDriver_Path
+					+ "' according the project wiki.";
+			return false;
+		}
+	}
+
+	private static boolean chromeDriverWasConfigured() {
+		File chromeDriverFile = new File(ChromeDriver_Path);
+		if (chromeDriverFile.exists() == true && chromeDriverFile.canExecute() == true) {
+			configurationErrorMessage = "The chromedriver was configured correctly";
+			return true;
+		} else {
+			configurationErrorMessage = "The chromedriver should be configured in '" + ChromeDriver_Path
 					+ "' according the project wiki.";
 			return false;
 		}

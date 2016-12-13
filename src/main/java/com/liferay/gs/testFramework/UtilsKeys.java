@@ -13,6 +13,7 @@ public class UtilsKeys {
 	private static String SELENIUM_GRID_IP = null;
 	private static String PHANTOMJS_PATH = null;
 	private static String GECKODRIVER_PATH = null;
+	private static String CHROMEDRIVER_PATH = null;
 	private static String ATTACH_FILE_PATH = null;
 	private static String DEFAULT_PROPERTIES_FILE_PATH = null;
 
@@ -55,6 +56,11 @@ public class UtilsKeys {
 	public static String getGeckoDriverPath() {
 		GECKODRIVER_PATH = Configuration.getString("GeckoDriver_Path");
 		return GECKODRIVER_PATH;
+	}
+
+	public static String getChromeDriverPath() {
+		CHROMEDRIVER_PATH = Configuration.getString("ChromeDriver_Path");
+		return CHROMEDRIVER_PATH;
 	}
 
 	public static String getDefaultPropertiesFilePath() {
