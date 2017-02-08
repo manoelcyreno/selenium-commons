@@ -28,7 +28,7 @@ publishing {
 }
 
 group = 'com.liferay.gs'
-version = '0.5.2'
+version = '1.0.0'
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
@@ -43,7 +43,7 @@ bintray {
         labels = ['lfrgs-selenium-commons', 'test', 'selenium', 'liferay', 'gs']
         licenses = ['Apache-2.0']
         publicDownloadNumbers = true
-        vcsUrl = 'https://github.com/gallindo/lfrgs-selenium-commons.git'
+        vcsUrl = 'https://github.com/manoelcyreno/lfrgs-selenium-commons.git'
         version {
             name = project.version
             desc = 'lfrgs-selenium-commons: Selenium framework for Liferay GS projects'

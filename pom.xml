@@ -9,9 +9,9 @@
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
-                    <id>bintray-gallindo-maven</id>
+                    <id>bintray-manoelcyreno-maven</id>
                     <name>bintray</name>
-                    <url>http://dl.bintray.com/gallindo/maven</url>
+                    <url>http://dl.bintray.com/manoelcyreno/maven</url>
                 </repository>
             </repositories>
             <pluginRepositories>
@@ -19,9 +19,9 @@
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
-                    <id>bintray-gallindo-maven</id>
+                    <id>bintray-manoelcyreno-maven</id>
                     <name>bintray-plugins</name>
-                    <url>http://dl.bintray.com/gallindo/maven</url>
+                    <url>http://dl.bintray.com/manoelcyreno/maven</url>
                 </pluginRepository>
             </pluginRepositories>
             <id>bintray</id>

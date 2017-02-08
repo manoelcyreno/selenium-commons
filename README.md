@@ -6,4 +6,4 @@ The Framework Tests based on Selenium is one tools with focus on accelerate the 
 
 Centralize all information related to the development of automated tests of the project, to allow quick access to them.
 
-See the Wiki page: https://github.com/gallindo/lfrgs-selenium-commons/wiki
+See the Wiki page: https://github.com/manoelcyreno/lfrgs-selenium-commons/wiki
