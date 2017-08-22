@@ -28,7 +28,7 @@ publishing {
 }
 
 group = 'com.liferay.gs'
-version = '1.0.0'
+version = '1.0.1'
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
