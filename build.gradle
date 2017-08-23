@@ -115,7 +115,6 @@ task setupSelenium(){
       defaultPropertiesFile.getParentFile().mkdirs()
 
         defaultPropertiesFile.withWriterAppend { w -> w << "environment=http://localhost:8080\nlinkToLogOut=:/c/portal/logout\n\n#The browser atribute to use SELENIUM GRID should be received: firefox, chrome, ie.\n#For use a localhost configuration (Selenium IDE) set to use:\n#'defaultFF' for use the Firefox browser or 'defaultGC' for use the Google Chrome browser\n#or 'phantomjs' or 'defaultGCHeadless' Google Chrome Headless browser.\nbrowser=defaultFF\ntime-out=10\n"}
-      }
     }
 
 
