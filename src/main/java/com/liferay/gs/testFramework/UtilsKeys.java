@@ -11,6 +11,7 @@ public class UtilsKeys {
 	private static String URL = null;
 	private static String URL_LOGOUT = null;
 	private static String SELENIUM_GRID_IP = null;
+	private static String SELENIUM_GRID_DOCKER_IP = null;
 	private static String PHANTOMJS_PATH = null;
 	private static String GECKODRIVER_PATH = null;
 	private static String CHROMEDRIVER_PATH = null;
@@ -46,6 +47,11 @@ public class UtilsKeys {
 	public static String getSeleniumGridMachine() {
 		SELENIUM_GRID_IP = ReadProperties.getConfigigurationOfPropertiesFile("SeleniumGridMachine");
 		return SELENIUM_GRID_IP;
+	}
+	
+	public static String getSeleniumGridDocker() {
+		SELENIUM_GRID_DOCKER_IP = ReadProperties.getConfigigurationOfPropertiesFile("SeleniumGridDockerPath");
+		return SELENIUM_GRID_DOCKER_IP;
 	}
 
 	public static String getPhantomJSPath() {

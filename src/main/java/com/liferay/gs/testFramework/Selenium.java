@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,6 +20,7 @@ public final class Selenium {
 	private static WebDriver driver = null;
 
 	private static String SeleniumGridMachine = UtilsKeys.getSeleniumGridMachine();
+	private static String SeleniumGridDocker = UtilsKeys.getSeleniumGridDocker();
 	private static String PhantomJS_Path = UtilsKeys.getPhantomJSPath();
 	private static String GeckoDriver_Path = UtilsKeys.getGeckoDriverPath();
 	private static String ChromeDriver_Path = UtilsKeys.getChromeDriverPath();
@@ -70,6 +72,10 @@ public final class Selenium {
 				configureDefaultGCHeadless();
 				break;
 
+			case "dockerGC":
+				configuraSeleniumGridWithDocker();
+				break;
+
 			default:
 				break;
 			}
@@ -111,6 +117,11 @@ public final class Selenium {
 	private static void configureFirefox(DesiredCapabilities capabilities) throws MalformedURLException {
 		capabilities.setBrowserName("firefox");
 		driver = new RemoteWebDriver(new URL(SeleniumGridMachine), capabilities);
+	}
+
+	private static void configuraSeleniumGridWithDocker() throws MalformedURLException {
+		Capabilities chromeCapabilities = DesiredCapabilities.chrome();
+		driver = new RemoteWebDriver(new URL(SeleniumGridDocker), chromeCapabilities);
 	}
 
 	private static void configurePhantomJS(DesiredCapabilities capabilities) throws MalformedURLException {
