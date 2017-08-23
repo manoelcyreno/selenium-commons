@@ -6,6 +6,7 @@ import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -65,6 +66,10 @@ public final class Selenium {
 				configurePhantomJS(capabilities);
 				break;
 
+			case "defaultGCHeadless":
+				configureDefaultGCHeadless();
+				break;
+
 			default:
 				break;
 			}
@@ -113,6 +118,17 @@ public final class Selenium {
 			capabilities.setBrowserName("PhantomJS");
 			capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, PhantomJS_Path);
 			driver = new PhantomJSDriver(capabilities);
+		} else {
+			System.out.println(configurationErrorMessage);
+		}
+	}
+
+	private static void configureDefaultGCHeadless() {
+		if (chromeDriverWasConfigured() == true) {
+			ChromeOptions chromeOptions = new ChromeOptions();
+			System.setProperty("webdriver.chrome.driver", ChromeDriver_Path);
+			chromeOptions.addArguments("--headless");
+			driver = new ChromeDriver(chromeOptions);
 		} else {
 			System.out.println(configurationErrorMessage);
 		}

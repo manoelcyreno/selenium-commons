@@ -28,7 +28,7 @@ publishing {
 }
 
 group = 'com.liferay.gs'
-version = '1.0.1'
+version = '1.0.2'
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
@@ -55,6 +55,7 @@ bintray {
 
 ext.junitVersion = '4.12'
 ext.seleniumVersion = '3.0.0'
+ext.htmlunitVersion = '2.27'
 
 dependencies {
 	compile group: 'junit', name: 'junit', version:junitVersion
@@ -63,6 +64,7 @@ dependencies {
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version:seleniumVersion
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version:seleniumVersion
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version:seleniumVersion
+	compile group: 'org.seleniumhq.selenium', name: 'htmlunit-driver', version:htmlunitVersion
 }
 
 
@@ -112,8 +114,7 @@ task setupSelenium(){
     if( !defaultPropertiesFile.exists() ) {
       defaultPropertiesFile.getParentFile().mkdirs()
 
-      defaultPropertiesFile.withWriterAppend { w ->
-          w <<  "environment=http://www.google.com.br\nlinkToLogOut=:8080/c/portal/logout\nSeleniumGridMachine=http://cloud-10-0-40-32:5555/wd/hub\n\n#The browser atribute to use SELENIUM GRID should be received: firefox, chrome, ie.\n#For use a localhost configuration (Selenium IDE) set to use \"default\" for use the Firefox or phantomjs.\nbrowser=default\ntime-out=30\n\n#The standard of the files should be: 01.jpg until 05.jpg\n#This Path will be used on Remote Browsers (by Selenium Grid)\nPathWithAttachFiles=C:\\\\screenshots\\\n"
+        defaultPropertiesFile.withWriterAppend { w -> w << "environment=http://localhost:8080\nlinkToLogOut=:/c/portal/logout\n\n#The browser atribute to use SELENIUM GRID should be received: firefox, chrome, ie.\n#For use a localhost configuration (Selenium IDE) set to use:\n#'defaultFF' for use the Firefox browser or 'defaultGC' for use the Google Chrome browser\n#or 'phantomjs' or 'defaultGCHeadless' Google Chrome Headless browser.\nbrowser=defaultFF\ntime-out=10\n"}
       }
     }
 
