@@ -1,4 +1,4 @@
-import com.liferay.gs.testFramework.UtilsMethods;
+import com.liferay.gs.testFramework.SeleniumCommonMethods;
 
 public class DummyClass {
 
@@ -13,18 +13,18 @@ public class DummyClass {
 	}
 
 	private static void takeScreenshot() {
-		UtilsMethods.setPathToAttachFile("png");
-		System.out.println(UtilsMethods.getPathOfImageFile());
-		UtilsMethods.setPathToAttachFile("jpeg");
-		System.out.println(UtilsMethods.getPathOfImageFile());
-		UtilsMethods.setPathToAttachFile("jpg");
-		System.out.println(UtilsMethods.getPathOfImageFile());
-		UtilsMethods.setPathToAttachFile("gif");
-		System.out.println(UtilsMethods.getPathOfImageFile());
+		SeleniumCommonMethods.setPathToAttachFile("png");
+		System.out.println(SeleniumCommonMethods.getPathOfImageFile());
+		SeleniumCommonMethods.setPathToAttachFile("jpeg");
+		System.out.println(SeleniumCommonMethods.getPathOfImageFile());
+		SeleniumCommonMethods.setPathToAttachFile("jpg");
+		System.out.println(SeleniumCommonMethods.getPathOfImageFile());
+		SeleniumCommonMethods.setPathToAttachFile("gif");
+		System.out.println(SeleniumCommonMethods.getPathOfImageFile());
 	}
 
 	private static void removeScreenshot() {
-		UtilsMethods.removeScreenshots();
+		SeleniumCommonMethods.removeScreenshots();
 	}
 
 }

@@ -19,11 +19,11 @@ public final class Selenium {
 
 	private static WebDriver driver = null;
 
-	private static String SeleniumGridMachine = UtilsKeys.getSeleniumGridMachine();
-	private static String SeleniumGridDocker = UtilsKeys.getSeleniumGridDocker();
-	private static String PhantomJS_Path = UtilsKeys.getPhantomJSPath();
-	private static String GeckoDriver_Path = UtilsKeys.getGeckoDriverPath();
-	private static String ChromeDriver_Path = UtilsKeys.getChromeDriverPath();
+	private static String SeleniumGridMachine = SeleniumReadPropertyKeys.getSeleniumGridMachine();
+	private static String SeleniumGridDocker = SeleniumReadPropertyKeys.getSeleniumGridDocker();
+	private static String PhantomJS_Path = SeleniumReadPropertyKeys.getPhantomJSPath();
+	private static String GeckoDriver_Path = SeleniumReadPropertyKeys.getGeckoDriverPath();
+	private static String ChromeDriver_Path = SeleniumReadPropertyKeys.getChromeDriverPath();
 	private static String configurationErrorMessage = null;
 
 	public static WebDriver getDriver() {
@@ -43,7 +43,7 @@ public final class Selenium {
 		try {
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 
-			switch (UtilsKeys.getPlatformName()) {
+			switch (SeleniumReadPropertyKeys.getPlatformName()) {
 			case "ie":
 				configureIE(capabilities);
 				break;
@@ -187,13 +187,13 @@ public final class Selenium {
 	}
 
 	private static boolean defaultPropertiesFilePathWasConfigured() {
-		File defaultPropertiesFile = new File(UtilsKeys.getDefaultPropertiesFilePath());
+		File defaultPropertiesFile = new File(SeleniumReadPropertyKeys.getDefaultPropertiesFilePath());
 		if (defaultPropertiesFile.exists() == true && defaultPropertiesFile.canRead() == true) {
 			configurationErrorMessage = "The defaultProperties.properties file was configured correctly";
 			return true;
 		} else {
 			configurationErrorMessage = "The defaultProperties.properties should be configured in '"
-					+ UtilsKeys.getDefaultPropertiesFilePath() + "' according the project wiki.";
+					+ SeleniumReadPropertyKeys.getDefaultPropertiesFilePath() + "' according the project wiki.";
 			return false;
 		}
 	}

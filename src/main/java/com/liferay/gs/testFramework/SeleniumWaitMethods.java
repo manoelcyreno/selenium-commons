@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WaitUtils {
+public class SeleniumWaitMethods {
 
 	private static WebDriverWait waitDriver = null;
 	private static Wait<WebDriver> waitFluent = null;
@@ -74,14 +74,14 @@ public class WaitUtils {
 
 	public static WebDriverWait getWaitDriver() {
 		if (waitDriver == null) {
-			waitDriver = new WebDriverWait(Selenium.getDriver(), UtilsKeys.getTimeOut());
+			waitDriver = new WebDriverWait(Selenium.getDriver(), SeleniumReadPropertyKeys.getTimeOut());
 		}
 		return waitDriver;
 	}
 
 	public static Wait<WebDriver> getFluentWait() {
 		if (waitFluent == null) {
-			waitFluent = new FluentWait<>(Selenium.getDriver()).withTimeout(UtilsKeys.getTimeOut(), TimeUnit.SECONDS)
+			waitFluent = new FluentWait<>(Selenium.getDriver()).withTimeout(SeleniumReadPropertyKeys.getTimeOut(), TimeUnit.SECONDS)
 					.pollingEvery(1, TimeUnit.SECONDS).ignoring(NoSuchElementException.class)
 					.ignoring(StaleElementReferenceException.class);
 		}

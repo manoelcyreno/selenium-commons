@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateUtils {
+public class SeleniumDateMethods {
 
 	public static String dateFutureYear() {
 		Calendar calendar = Calendar.getInstance();

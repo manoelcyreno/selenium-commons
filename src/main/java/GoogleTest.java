@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.liferay.gs.testFramework.BaseTestCase;
 import com.liferay.gs.testFramework.Selenium;
-import com.liferay.gs.testFramework.UtilsKeys;
-import com.liferay.gs.testFramework.WaitUtils;
+import com.liferay.gs.testFramework.SeleniumReadPropertyKeys;
+import com.liferay.gs.testFramework.SeleniumWaitMethods;
 
 public class GoogleTest extends BaseTestCase {
 
@@ -22,8 +22,8 @@ public class GoogleTest extends BaseTestCase {
 	@Before
 	public void setUp() {
 		// UtilsKeys.DRIVER.get(UtilsKeys.getUrlToHome());
-		UtilsKeys.DRIVER.get("http://www.google.com");
-		UtilsKeys.DRIVER.manage().timeouts().implicitlyWait(UtilsKeys.getTimeOut(), TimeUnit.SECONDS);
+		SeleniumReadPropertyKeys.DRIVER.get("http://www.google.com");
+		SeleniumReadPropertyKeys.DRIVER.manage().timeouts().implicitlyWait(SeleniumReadPropertyKeys.getTimeOut(), TimeUnit.SECONDS);
 	}
 
 	@After
@@ -40,16 +40,16 @@ public class GoogleTest extends BaseTestCase {
 	 */
 	@Test
 	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithWrongTitle() {
-		WaitUtils.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
+		SeleniumWaitMethods.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
 				ExpectedConditions::elementToBeClickable);
-		UtilsKeys.DRIVER.findElement(searchLocator).clear();
-		UtilsKeys.DRIVER.findElement(searchLocator).sendKeys("seleniumhq");
-		UtilsKeys.DRIVER.findElement(searchLocator).sendKeys(Keys.ENTER);
-		WaitUtils.findElementWithWaitDriver(By.linkText("Selenium - Web Browser Automation"),
+		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).clear();
+		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).sendKeys("seleniumhq");
+		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).sendKeys(Keys.ENTER);
+		SeleniumWaitMethods.findElementWithWaitDriver(By.linkText("Selenium - Web Browser Automation"),
 				ExpectedConditions::visibilityOfElementLocated, ExpectedConditions::elementToBeClickable);
-		UtilsKeys.DRIVER.findElement(By.linkText("Selenium - Web Browser Automation")).click();
-		WaitUtils.getWaitDriver().until(ExpectedConditions.titleContains("Automation"));
-		assertEquals("Selenium - Web Browser Automation2", UtilsKeys.DRIVER.getTitle());
+		SeleniumReadPropertyKeys.DRIVER.findElement(By.linkText("Selenium - Web Browser Automation")).click();
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.titleContains("Automation"));
+		assertEquals("Selenium - Web Browser Automation2", SeleniumReadPropertyKeys.DRIVER.getTitle());
 	}
 
 	/*
@@ -57,15 +57,15 @@ public class GoogleTest extends BaseTestCase {
 	 */
 	@Test
 	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle() {
-		WaitUtils.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
+		SeleniumWaitMethods.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
 				ExpectedConditions::elementToBeClickable);
-		UtilsKeys.DRIVER.findElement(searchLocator).clear();
-		UtilsKeys.DRIVER.findElement(searchLocator).sendKeys("seleniumhq");
-		UtilsKeys.DRIVER.findElement(searchLocator).sendKeys(Keys.ENTER);
-		WaitUtils.findElementWithWaitDriver(By.linkText("Selenium - Web Browser Automation"),
+		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).clear();
+		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).sendKeys("seleniumhq");
+		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).sendKeys(Keys.ENTER);
+		SeleniumWaitMethods.findElementWithWaitDriver(By.linkText("Selenium - Web Browser Automation"),
 				ExpectedConditions::visibilityOfElementLocated, ExpectedConditions::elementToBeClickable);
-		UtilsKeys.DRIVER.findElement(By.linkText("Selenium - Web Browser Automation")).click();
-		WaitUtils.getWaitDriver().until(ExpectedConditions.titleContains("Automation"));
-		assertEquals("Selenium - Web Browser Automation", UtilsKeys.DRIVER.getTitle());
+		SeleniumReadPropertyKeys.DRIVER.findElement(By.linkText("Selenium - Web Browser Automation")).click();
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.titleContains("Automation"));
+		assertEquals("Selenium - Web Browser Automation", SeleniumReadPropertyKeys.DRIVER.getTitle());
 	}
 }

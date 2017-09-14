@@ -20,11 +20,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class UtilsMethods {
+public class SeleniumCommonMethods {
 
 	private static String imagePath = null;
 
-	private Actions actionBuilder = new Actions(UtilsKeys.DRIVER);
+	private Actions actionBuilder = new Actions(SeleniumReadPropertyKeys.DRIVER);
 
 	private final By addButtonLocator = By.xpath(
 			".//*[@id='_com_liferay_product_navigation_control_menu_web_portlet_ProductNavigationControlMenuPortlet_addToggleId']");
@@ -42,7 +42,7 @@ public class UtilsMethods {
 
 		Date data = new Date();
 
-		if (UtilsKeys.getPlatformName().equalsIgnoreCase("default")) {
+		if (SeleniumReadPropertyKeys.getPlatformName().contains("default")) {
 			try {
 				Thread.sleep(1000);
 				new File("reports/screenshots/").mkdirs();
@@ -55,15 +55,15 @@ public class UtilsMethods {
 			}
 		} else {
 			Random numberGenerator = new Random();
-			String pathToSaveTheFile = UtilsKeys.getAttachFilePath();
+			String pathToSaveTheFile = SeleniumReadPropertyKeys.getAttachFilePath();
 			int number = numberGenerator.nextInt(5) + 1;
 			imagePath = pathToSaveTheFile + "0" + number + "." + imageExtension;
 		}
 	}
 
 	public static String getPathOfImageFile() {
-		if (UtilsKeys.getPlatformName().equalsIgnoreCase("default")) {
-			Path whereIam = Paths.get(Configuration.class.getResource("/").getFile());
+		if (SeleniumReadPropertyKeys.getPlatformName().contains("default")) {
+			Path whereIam = Paths.get(ConfigurationOS.class.getResource("/").getFile());
 			Path rootRepository = whereIam.getParent();
 			return rootRepository + "/reports/screenshots/" + imagePath;
 		} else {
@@ -78,8 +78,8 @@ public class UtilsMethods {
 	 */
 	public static void removeScreenshots() {
 
-		if (UtilsKeys.getPlatformName().equalsIgnoreCase("default")) {
-			Path whereIam = Paths.get(Configuration.class.getResource("/").getFile());
+		if (SeleniumReadPropertyKeys.getPlatformName().contains("default")) {
+			Path whereIam = Paths.get(ConfigurationOS.class.getResource("/").getFile());
 			Path rootRepository = whereIam.getParent();
 			imagePath = rootRepository + "/reports/screenshots/";
 			File folder = new File(imagePath);
@@ -113,7 +113,7 @@ public class UtilsMethods {
 	 * Remove all portlets from the current screen.
 	 */
 	public void removeAllPorlets() {
-		List<WebElement> portlets = UtilsKeys.DRIVER.findElements(By.cssSelector(".portlet-layout .portlet"));
+		List<WebElement> portlets = SeleniumReadPropertyKeys.DRIVER.findElements(By.cssSelector(".portlet-layout .portlet"));
 		for (WebElement portlet : portlets) {
 			openPortletActionDropDown(portlet);
 			clickOnPortletConfigurationMenu("Remove");
@@ -127,7 +127,7 @@ public class UtilsMethods {
 	 * this part of ID to be removed.
 	 */
 	public void removeAllSpecificPorlets(String partOfPortletID) {
-		List<WebElement> portlets = UtilsKeys.DRIVER
+		List<WebElement> portlets = SeleniumReadPropertyKeys.DRIVER
 				.findElements(By.xpath(".//*[contains(@id,'" + partOfPortletID + "')]"));
 		for (WebElement portlet : portlets) {
 			openPortletActionDropDown(portlet);
@@ -137,7 +137,7 @@ public class UtilsMethods {
 	}
 
 	private void dragAndDropPortletToColumn(String portletName, String column) {
-		WaitUtils.waitMediumTime();
+		SeleniumWaitMethods.waitMediumTime();
 
 		By searchApplicationResultLocator = By
 				.xpath(".//*[@id='_com_liferay_product_navigation_control_menu_web_portlet_ProductNavigationControlMenuPortlet_portletCategory0']//*[contains (text(), '"
@@ -145,37 +145,37 @@ public class UtilsMethods {
 
 		By columnLocator = By.xpath(".//*[@id='" + column + "']");
 
-		WaitUtils.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(searchApplicationResultLocator));
-		WaitUtils.getWaitDriver().until(ExpectedConditions.elementToBeClickable(searchApplicationResultLocator));
-		WebElement element = UtilsKeys.DRIVER.findElement(searchApplicationResultLocator);
-		WebElement target = UtilsKeys.DRIVER.findElement(columnLocator);
-		(new Actions(UtilsKeys.DRIVER)).dragAndDrop(element, target).perform();
-		WaitUtils.waitMediumTime();
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(searchApplicationResultLocator));
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.elementToBeClickable(searchApplicationResultLocator));
+		WebElement element = SeleniumReadPropertyKeys.DRIVER.findElement(searchApplicationResultLocator);
+		WebElement target = SeleniumReadPropertyKeys.DRIVER.findElement(columnLocator);
+		(new Actions(SeleniumReadPropertyKeys.DRIVER)).dragAndDrop(element, target).perform();
+		SeleniumWaitMethods.waitMediumTime();
 	}
 
 	private void searchForPortletByName(String portletName) {
-		WaitUtils.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(searchApplicationLocator));
-		WaitUtils.getWaitDriver().until(ExpectedConditions.elementToBeClickable(searchApplicationLocator));
-		UtilsKeys.DRIVER.findElement(searchApplicationLocator).sendKeys(portletName);
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(searchApplicationLocator));
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.elementToBeClickable(searchApplicationLocator));
+		SeleniumReadPropertyKeys.DRIVER.findElement(searchApplicationLocator).sendKeys(portletName);
 	}
 
 	private void clickOnAddButton() {
-		WaitUtils.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(addButtonLocator));
-		WaitUtils.getWaitDriver().until(ExpectedConditions.elementToBeClickable(addButtonLocator));
-		UtilsKeys.DRIVER.findElement(addButtonLocator).click();
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(addButtonLocator));
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.elementToBeClickable(addButtonLocator));
+		SeleniumReadPropertyKeys.DRIVER.findElement(addButtonLocator).click();
 	}
 
 	private void clickOnApplicationCategory() {
-		WaitUtils.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(applicationHeadingLocator));
-		WaitUtils.getWaitDriver().until(ExpectedConditions.elementToBeClickable(applicationHeadingLocator));
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(applicationHeadingLocator));
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.elementToBeClickable(applicationHeadingLocator));
 
 		By portletContentCategories = By.cssSelector(".add-content-menu .lfr-content-category");
-		boolean isApplicationCategoriesDisplayed = UtilsKeys.DRIVER.findElement(portletContentCategories).isDisplayed();
+		boolean isApplicationCategoriesDisplayed = SeleniumReadPropertyKeys.DRIVER.findElement(portletContentCategories).isDisplayed();
 
 		if (!isApplicationCategoriesDisplayed) {
-			WaitUtils.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(applicationHeadingLocator));
-			WaitUtils.getWaitDriver().until(ExpectedConditions.elementToBeClickable(applicationHeadingLocator));
-			UtilsKeys.DRIVER.findElement(applicationHeadingLocator).click();
+			SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(applicationHeadingLocator));
+			SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.elementToBeClickable(applicationHeadingLocator));
+			SeleniumReadPropertyKeys.DRIVER.findElement(applicationHeadingLocator).click();
 		}
 	}
 
@@ -187,9 +187,9 @@ public class UtilsMethods {
 
 	private void clickOnPortletConfigurationMenu(String title) {
 		By dropDownMenu = By.cssSelector(".dropdown-menu");
-		WaitUtils.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(dropDownMenu));
+		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(dropDownMenu));
 
-		WebElement dropDownMenuElement = UtilsKeys.DRIVER.findElement(dropDownMenu);
+		WebElement dropDownMenuElement = SeleniumReadPropertyKeys.DRIVER.findElement(dropDownMenu);
 
 		List<WebElement> elements = dropDownMenuElement.findElements(By.cssSelector("li a.lfr-icon-item"));
 		WebElement element = elements.stream().filter(el -> el.getText().trim().equals(title)).findFirst().get();
@@ -197,7 +197,7 @@ public class UtilsMethods {
 	}
 
 	private static void acceptBrowserDialog() {
-		Alert alert = UtilsKeys.DRIVER.switchTo().alert();
+		Alert alert = SeleniumReadPropertyKeys.DRIVER.switchTo().alert();
 		alert.accept();
 	}
 }

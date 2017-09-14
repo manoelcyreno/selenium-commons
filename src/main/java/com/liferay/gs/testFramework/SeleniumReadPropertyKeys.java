@@ -1,7 +1,7 @@
 package com.liferay.gs.testFramework;
 import org.openqa.selenium.WebDriver;
 
-public class UtilsKeys {
+public class SeleniumReadPropertyKeys {
 
 	public static final WebDriver DRIVER = Selenium.getDriver();
 
@@ -55,22 +55,22 @@ public class UtilsKeys {
 	}
 
 	public static String getPhantomJSPath() {
-		PHANTOMJS_PATH = Configuration.getString("PhantomJS_Path");
+		PHANTOMJS_PATH = ConfigurationOS.getString("PhantomJS_Path");
 		return PHANTOMJS_PATH;
 	}
 
 	public static String getGeckoDriverPath() {
-		GECKODRIVER_PATH = Configuration.getString("GeckoDriver_Path");
+		GECKODRIVER_PATH = ConfigurationOS.getString("GeckoDriver_Path");
 		return GECKODRIVER_PATH;
 	}
 
 	public static String getChromeDriverPath() {
-		CHROMEDRIVER_PATH = Configuration.getString("ChromeDriver_Path");
+		CHROMEDRIVER_PATH = ConfigurationOS.getString("ChromeDriver_Path");
 		return CHROMEDRIVER_PATH;
 	}
 
 	public static String getDefaultPropertiesFilePath() {
-		DEFAULT_PROPERTIES_FILE_PATH = Configuration.getString("defaultPropertiesFile");
+		DEFAULT_PROPERTIES_FILE_PATH = ConfigurationOS.getString("defaultPropertiesFile");
 		return DEFAULT_PROPERTIES_FILE_PATH;
 	}
 
