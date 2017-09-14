@@ -21,7 +21,7 @@ public class GoogleTest extends BaseTestCase {
 
 	@Before
 	public void setUp() {
-		// UtilsKeys.DRIVER.get(UtilsKeys.getUrlToHome());
+		// SeleniumReadPropertyKeys.DRIVER.get(SeleniumReadPropertyKeys.getUrlToHome());
 		SeleniumReadPropertyKeys.DRIVER.get("http://www.google.com");
 		SeleniumReadPropertyKeys.DRIVER.manage().timeouts().implicitlyWait(SeleniumReadPropertyKeys.getTimeOut(), TimeUnit.SECONDS);
 	}

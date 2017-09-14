@@ -19,7 +19,7 @@ public class SeleniumReadPropertyKeys {
 	private static String DEFAULT_PROPERTIES_FILE_PATH = null;
 
 	public static int getTimeOut() {
-		TIME_OUT = ReadProperties.getConfigigurationOfPropertiesFile("time-out");
+		TIME_OUT = ReadProperties.getConfigigurationOfPropertiesFile("time-out", "10");
 		int timeOut = Integer.parseInt(TIME_OUT);
 		return timeOut;
 	}
@@ -35,12 +35,12 @@ public class SeleniumReadPropertyKeys {
 	}
 
 	public static String getUrlToHome() {
-		URL = ReadProperties.getConfigigurationOfPropertiesFile("environment");
+		URL = ReadProperties.getConfigigurationOfPropertiesFile("environment", "http://localhost:8080");
 		return URL;
 	}
 
 	public static String getLinkToLogOut() {
-		URL_LOGOUT = ReadProperties.getConfigigurationOfPropertiesFile("linkToLogOut");
+		URL_LOGOUT = ReadProperties.getConfigigurationOfPropertiesFile("linkToLogOut", "/c/portal/logout");
 		return URL_LOGOUT;
 	}
 
@@ -48,7 +48,7 @@ public class SeleniumReadPropertyKeys {
 		SELENIUM_GRID_IP = ReadProperties.getConfigigurationOfPropertiesFile("SeleniumGridMachine");
 		return SELENIUM_GRID_IP;
 	}
-	
+
 	public static String getSeleniumGridDocker() {
 		SELENIUM_GRID_DOCKER_IP = ReadProperties.getConfigigurationOfPropertiesFile("SeleniumGridDockerPath");
 		return SELENIUM_GRID_DOCKER_IP;

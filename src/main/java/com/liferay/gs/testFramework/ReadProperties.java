@@ -15,6 +15,12 @@ public class ReadProperties {
 		return text;
 	}
 
+	public static String getConfigigurationOfPropertiesFile(String parameterName, String defaultValue) {
+		Properties prop = getConfigurationProperties();
+		String text = prop.getProperty(parameterName, defaultValue);
+		return text;
+	}
+
 	private static Properties getConfigurationProperties() {
 
 		Properties properties = new Properties();
