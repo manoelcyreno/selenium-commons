@@ -24,13 +24,13 @@ public class SeleniumCommonMethods {
 
 	private static String imagePath = null;
 
-	private Actions actionBuilder = new Actions(SeleniumReadPropertyKeys.DRIVER);
+	private static Actions actionBuilder = new Actions(SeleniumReadPropertyKeys.DRIVER);
 
-	private final By addButtonLocator = By.xpath(
+	private static final By addButtonLocator = By.xpath(
 			".//*[@id='_com_liferay_product_navigation_control_menu_web_portlet_ProductNavigationControlMenuPortlet_addToggleId']");
-	private final By applicationHeadingLocator = By.xpath(
+	private static final By applicationHeadingLocator = By.xpath(
 			".//*[@id='_com_liferay_product_navigation_control_menu_web_portlet_ProductNavigationControlMenuPortlet_addApplicationHeading']");
-	private final By searchApplicationLocator = By.xpath(
+	private static final By searchApplicationLocator = By.xpath(
 			".//*[@id='_com_liferay_product_navigation_control_menu_web_portlet_ProductNavigationControlMenuPortlet_searchApplication']");
 
 	/*
@@ -102,7 +102,7 @@ public class SeleniumCommonMethods {
 	 * Add the portlet on Screen, but to do this, the user should inform the
 	 * portlet name and the column that the portlet will appear
 	 */
-	public void addPortletOnScreen(String portletName, String column) {
+	public static void addPortletOnScreen(String portletName, String column) {
 		clickOnAddButton();
 		clickOnApplicationCategory();
 		searchForPortletByName(portletName);
@@ -112,7 +112,7 @@ public class SeleniumCommonMethods {
 	/*
 	 * Remove all portlets from the current screen.
 	 */
-	public void removeAllPorlets() {
+	public static void removeAllPorlets() {
 		List<WebElement> portlets = SeleniumReadPropertyKeys.DRIVER.findElements(By.cssSelector(".portlet-layout .portlet"));
 		for (WebElement portlet : portlets) {
 			openPortletActionDropDown(portlet);
@@ -126,7 +126,7 @@ public class SeleniumCommonMethods {
 	 * user should inform any part of the portlet ID, that all portlets with
 	 * this part of ID to be removed.
 	 */
-	public void removeAllSpecificPorlets(String partOfPortletID) {
+	public static void removeAllSpecificPorlets(String partOfPortletID) {
 		List<WebElement> portlets = SeleniumReadPropertyKeys.DRIVER
 				.findElements(By.xpath(".//*[contains(@id,'" + partOfPortletID + "')]"));
 		for (WebElement portlet : portlets) {
@@ -136,7 +136,7 @@ public class SeleniumCommonMethods {
 		}
 	}
 
-	private void dragAndDropPortletToColumn(String portletName, String column) {
+	private static void dragAndDropPortletToColumn(String portletName, String column) {
 		SeleniumWaitMethods.waitMediumTime();
 
 		By searchApplicationResultLocator = By
@@ -153,19 +153,19 @@ public class SeleniumCommonMethods {
 		SeleniumWaitMethods.waitMediumTime();
 	}
 
-	private void searchForPortletByName(String portletName) {
+	private static void searchForPortletByName(String portletName) {
 		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(searchApplicationLocator));
 		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.elementToBeClickable(searchApplicationLocator));
 		SeleniumReadPropertyKeys.DRIVER.findElement(searchApplicationLocator).sendKeys(portletName);
 	}
 
-	private void clickOnAddButton() {
+	private static void clickOnAddButton() {
 		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(addButtonLocator));
 		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.elementToBeClickable(addButtonLocator));
 		SeleniumReadPropertyKeys.DRIVER.findElement(addButtonLocator).click();
 	}
 
-	private void clickOnApplicationCategory() {
+	private static void clickOnApplicationCategory() {
 		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(applicationHeadingLocator));
 		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.elementToBeClickable(applicationHeadingLocator));
 
@@ -179,13 +179,13 @@ public class SeleniumCommonMethods {
 		}
 	}
 
-	private void openPortletActionDropDown(WebElement portletElement) {
+	private static void openPortletActionDropDown(WebElement portletElement) {
 		WebElement configButton = portletElement.findElement(By.cssSelector(".lexicon-icon-ellipsis-v"));
 		actionBuilder.moveToElement(configButton).pause(Duration.ofMillis(200)).perform();
 		configButton.click();
 	}
 
-	private void clickOnPortletConfigurationMenu(String title) {
+	private static void clickOnPortletConfigurationMenu(String title) {
 		By dropDownMenu = By.cssSelector(".dropdown-menu");
 		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(dropDownMenu));
 
