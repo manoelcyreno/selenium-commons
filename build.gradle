@@ -30,7 +30,11 @@ publishing {
 description = """Liferay GS Selenium Commons Framework"""
 
 group = 'com.liferay.gs'
-version = '1.0.5'
+
+// Version X.Y.Z = X, When changing the API
+// Version X.Y.Z = Y, When adding features while maintaining compatibility
+// Version X.Y.Z = Z, When to fix failures while maintaining compatibility
+version = '2.0.0'
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
