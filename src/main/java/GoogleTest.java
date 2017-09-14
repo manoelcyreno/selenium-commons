@@ -21,7 +21,8 @@ public class GoogleTest extends BaseTestCase {
 
 	@Before
 	public void setUp() {
-		UtilsKeys.DRIVER.get(UtilsKeys.getUrlToHome());
+		// UtilsKeys.DRIVER.get(UtilsKeys.getUrlToHome());
+		UtilsKeys.DRIVER.get("http://www.google.com");
 		UtilsKeys.DRIVER.manage().timeouts().implicitlyWait(UtilsKeys.getTimeOut(), TimeUnit.SECONDS);
 	}
 
@@ -34,6 +35,9 @@ public class GoogleTest extends BaseTestCase {
 		Selenium.quit();
 	}
 
+	/*
+	 * this test should fail purposely
+	 */
 	@Test
 	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithWrongTitle() {
 		WaitUtils.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
@@ -48,6 +52,9 @@ public class GoogleTest extends BaseTestCase {
 		assertEquals("Selenium - Web Browser Automation2", UtilsKeys.DRIVER.getTitle());
 	}
 
+	/*
+	 * this test should pass
+	 */
 	@Test
 	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle() {
 		WaitUtils.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,

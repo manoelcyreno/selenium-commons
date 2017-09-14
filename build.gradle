@@ -27,8 +27,10 @@ publishing {
 	}
 }
 
+description = """Liferay GS Selenium Commons Framework"""
+
 group = 'com.liferay.gs'
-version = '1.0.4'
+version = '1.0.5'
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
@@ -54,8 +56,7 @@ bintray {
 }
 
 ext.junitVersion = '4.12'
-ext.seleniumVersion = '3.0.0'
-ext.htmlunitVersion = '2.27'
+ext.seleniumVersion = '3.4.0'
 
 dependencies {
 	compile group: 'junit', name: 'junit', version:junitVersion
@@ -64,9 +65,7 @@ dependencies {
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version:seleniumVersion
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version:seleniumVersion
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version:seleniumVersion
-	compile group: 'org.seleniumhq.selenium', name: 'htmlunit-driver', version:htmlunitVersion
 }
-
 
 // custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -83,7 +82,6 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives sourcesJar, javadocJar
 }
-
 
 // A custom task to show report on tests that have run
 task viewResults(dependsOn: ['test'] , type:Exec) {
