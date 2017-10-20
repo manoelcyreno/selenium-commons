@@ -102,14 +102,14 @@ public class SeleniumReadPropertyKeys {
 		return CHROMEDRIVER_PATH;
 	}
 
-	public static String getDefaultPropertiesFilePath() {
+	public static String getSeleniumPropertyKeysFilePath() {
 		String localPropertiesFile = "/SeleniumProperties/SeleniumPropertyKeys.properties";
 		File localFile = new File(getProjectPath() + localPropertiesFile);
 
 		if (localFile.exists()) {
 			DEFAULT_PROPERTIES_FILE_PATH = getProjectPath() + localPropertiesFile;
 		} else {
-			DEFAULT_PROPERTIES_FILE_PATH = ConfigurationOS.getString("defaultPropertiesFile");
+			DEFAULT_PROPERTIES_FILE_PATH = ConfigurationOS.getString("SeleniumPropertyKeys");
 		}
 
 		return DEFAULT_PROPERTIES_FILE_PATH;

@@ -41,7 +41,7 @@ public class ReadProperties {
 	}
 
 	private static String findConfigurationPropertiesPath() {
-		String defaultProperties = SeleniumReadPropertyKeys.getDefaultPropertiesFilePath();
+		String defaultProperties = SeleniumReadPropertyKeys.getSeleniumPropertyKeysFilePath();
 		return defaultProperties;
 	}
 }

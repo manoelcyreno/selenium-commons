@@ -187,13 +187,13 @@ public final class Selenium {
 	}
 
 	private static boolean defaultPropertiesFilePathWasConfigured() {
-		File defaultPropertiesFile = new File(SeleniumReadPropertyKeys.getDefaultPropertiesFilePath());
+		File defaultPropertiesFile = new File(SeleniumReadPropertyKeys.getSeleniumPropertyKeysFilePath());
 		if (defaultPropertiesFile.exists() == true && defaultPropertiesFile.canRead() == true) {
 			configurationErrorMessage = "The defaultProperties.properties file was configured correctly";
 			return true;
 		} else {
 			configurationErrorMessage = "The defaultProperties.properties should be configured in '"
-					+ SeleniumReadPropertyKeys.getDefaultPropertiesFilePath() + "' according the project wiki.";
+					+ SeleniumReadPropertyKeys.getSeleniumPropertyKeysFilePath() + "' according the project wiki.";
 			return false;
 		}
 	}
