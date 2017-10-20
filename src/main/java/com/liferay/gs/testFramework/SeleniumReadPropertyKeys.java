@@ -1,4 +1,9 @@
 package com.liferay.gs.testFramework;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.openqa.selenium.WebDriver;
 
 public class SeleniumReadPropertyKeys {
@@ -60,18 +65,60 @@ public class SeleniumReadPropertyKeys {
 	}
 
 	public static String getGeckoDriverPath() {
-		GECKODRIVER_PATH = ConfigurationOS.getString("GeckoDriver_Path");
+		String localPropertiesFile;
+		if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+			localPropertiesFile = "/SeleniumProperties/geckodriver.exe";
+		} else {
+			localPropertiesFile = "/SeleniumProperties/geckodriver";
+		}
+
+		File localFile = new File(getProjectPath() + localPropertiesFile);
+
+		if (localFile.exists()) {
+			GECKODRIVER_PATH = getProjectPath() + localPropertiesFile;
+		} else {
+			GECKODRIVER_PATH = ConfigurationOS.getString("GeckoDriver_Path");
+		}
+
 		return GECKODRIVER_PATH;
 	}
 
 	public static String getChromeDriverPath() {
-		CHROMEDRIVER_PATH = ConfigurationOS.getString("ChromeDriver_Path");
+		String localPropertiesFile;
+		if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+			localPropertiesFile = "/SeleniumProperties/chromedriver.exe";
+		} else {
+			localPropertiesFile = "/SeleniumProperties/chromedriver";
+		}
+
+		File localFile = new File(getProjectPath() + localPropertiesFile);
+
+		if (localFile.exists()) {
+			CHROMEDRIVER_PATH = getProjectPath() + localPropertiesFile;
+		} else {
+			CHROMEDRIVER_PATH = ConfigurationOS.getString("ChromeDriver_Path");
+		}
+
 		return CHROMEDRIVER_PATH;
 	}
 
 	public static String getDefaultPropertiesFilePath() {
-		DEFAULT_PROPERTIES_FILE_PATH = ConfigurationOS.getString("defaultPropertiesFile");
+		String localPropertiesFile = "/SeleniumProperties/SeleniumPropertyKeys.properties";
+		File localFile = new File(getProjectPath() + localPropertiesFile);
+
+		if (localFile.exists()) {
+			DEFAULT_PROPERTIES_FILE_PATH = getProjectPath() + localPropertiesFile;
+		} else {
+			DEFAULT_PROPERTIES_FILE_PATH = ConfigurationOS.getString("defaultPropertiesFile");
+		}
+
 		return DEFAULT_PROPERTIES_FILE_PATH;
+	}
+
+	private static String getProjectPath() {
+		Path whereIam = Paths.get(ConfigurationOS.class.getResource("/").getFile());
+		String projectPath = whereIam.getParent().toString();
+		return projectPath;
 	}
 
 }
