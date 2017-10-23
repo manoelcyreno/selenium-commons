@@ -150,6 +150,10 @@ public final class Selenium {
 		driver = null;
 	}
 
+	public static void forceInitDriver() {
+		initDriver();
+	}
+
 	private static boolean geckoDriverWasConfigured() {
 		File genckoDriverFile = new File(GeckoDriver_Path);
 		if (genckoDriverFile.exists() == true && genckoDriverFile.canExecute() == true) {
