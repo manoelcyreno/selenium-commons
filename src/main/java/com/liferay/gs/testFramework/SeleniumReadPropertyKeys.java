@@ -116,8 +116,9 @@ public class SeleniumReadPropertyKeys {
 	}
 
 	private static String getProjectPath() {
-		Path whereIam = Paths.get(ConfigurationOS.class.getResource("/").getFile());
-		String projectPath = whereIam.getParent().toString();
+		// Path whereIam = Paths.get(ConfigurationOS.class.getResource("/").getFile());
+		// String projectPath = whereIam.getParent().toString();
+		String projectPath = System.getProperty("user.dir");
 		return projectPath;
 	}
 

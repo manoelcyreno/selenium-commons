@@ -34,7 +34,7 @@ group = 'com.liferay.gs'
 // Version X.Y.Z = X, When changing the API
 // Version X.Y.Z = Y, When adding features while maintaining compatibility
 // Version X.Y.Z = Z, When to fix failures while maintaining compatibility
-version = '2.1.0'
+version = '2.1.1'
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
