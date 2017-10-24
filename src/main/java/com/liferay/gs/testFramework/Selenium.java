@@ -150,8 +150,9 @@ public final class Selenium {
 		driver = null;
 	}
 
-	public static void forceInitDriver() {
+	public static WebDriver forceInitDriver() {
 		initDriver();
+		return driver;
 	}
 
 	private static boolean geckoDriverWasConfigured() {
