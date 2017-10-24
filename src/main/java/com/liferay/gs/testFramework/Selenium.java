@@ -28,7 +28,7 @@ public final class Selenium {
 
 	public static WebDriver getDriver() {
 		if (defaultPropertiesFilePathWasConfigured() == true) {
-			if (driver == null || driver.toString().contains("null")) {
+			if (driver == null) {
 				initDriver();
 			}
 			return driver;
