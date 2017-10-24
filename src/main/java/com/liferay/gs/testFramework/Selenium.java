@@ -28,7 +28,7 @@ public final class Selenium {
 
 	public static WebDriver getDriver() {
 		if (defaultPropertiesFilePathWasConfigured() == true) {
-			if (driver == null) {
+			if (driver == null || driver.toString().contains("null")) {
 				initDriver();
 			}
 			return driver;
@@ -148,11 +148,6 @@ public final class Selenium {
 	public static void quit() {
 		driver.quit();
 		driver = null;
-	}
-
-	public static WebDriver forceInitDriver() {
-		initDriver();
-		return driver;
 	}
 
 	private static boolean geckoDriverWasConfigured() {
