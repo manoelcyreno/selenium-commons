@@ -27,31 +27,8 @@ description = """Liferay GS Selenium Commons Framework"""
 // Version X.Y.Z = X, When changing the API
 // Version X.Y.Z = Y, When adding features while maintaining compatibility
 // Version X.Y.Z = Z, When to fix failures while maintaining compatibility
-version = '2.1.4'
+version = '2.1.5'
 group = 'com.liferay.gs'
-
-bintray {
-    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-    publications = ['mavenJava']
-    pkg {
-        repo = 'maven'
-        name = 'lfrgs-selenium-commons'
-        desc = 'lfrgs-selenium-commons'
-		licenses = ['Apache-2.0']
-		userOrg = System.getenv('BINTRAY_USER')
-        labels = ['lfrgs-selenium-commons', 'test', 'selenium', 'liferay', 'gs', 'funtionaltest', 'BDD', 'aceptancetest']
-        licenses = ['Apache-2.0']
-        publicDownloadNumbers = true
-        vcsUrl = 'https://github.com/manoelcyreno/lfrgs-selenium-commons.git'
-        version {
-            name = project.version
-            desc = 'lfrgs-selenium-commons: Selenium framework for Liferay GS projects'
-            released  = new Date()
-            vcsTag = project.version
-        }
-    }
-}
 
 pluginBundle {
 System.setProperty('gradle.publish.key', project.properties['gradle.publish.key'] ?: System.getenv('GRADLE_PUBLISH_KEY'))
@@ -102,4 +79,38 @@ artifacts {
 task viewResults(dependsOn: ['test'] , type:Exec) {
 		workingDir './build/reports/tests'
 		commandLine 'cmd', '/c', 'start index.html'
+}
+
+publishing {
+	publications {
+	    mavenJava(MavenPublication) {
+    		from components.java
+    		
+		artifact sourcesJar
+		artifact javadocJar
+        }
+	}
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['mavenJava']
+    pkg {
+        repo = 'maven'
+        name = 'lfrgs-selenium-commons'
+        desc = 'lfrgs-selenium-commons'
+		licenses = ['Apache-2.0']
+		userOrg = System.getenv('BINTRAY_USER')
+        labels = ['lfrgs-selenium-commons', 'test', 'selenium', 'liferay', 'gs', 'funtionaltest', 'BDD', 'aceptancetest']
+        licenses = ['Apache-2.0']
+        publicDownloadNumbers = true
+        vcsUrl = 'https://github.com/manoelcyreno/lfrgs-selenium-commons.git'
+        version {
+            name = project.version
+            desc = 'lfrgs-selenium-commons: Selenium framework for Liferay GS projects'
+            released  = new Date()
+            vcsTag = project.version
+        }
+    }
 }
