@@ -29,6 +29,39 @@ description = """Liferay GS Selenium Commons Framework"""
 // Version X.Y.Z = Z, When to fix failures while maintaining compatibility
 version = '2.1.5'
 group = 'com.liferay.gs'
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
+// A custom task to show report on tests that have run
+task viewResults(dependsOn: ['test'] , type:Exec) {
+		workingDir './build/reports/tests'
+		commandLine 'cmd', '/c', 'start index.html'
+}
+
+
+publishing {
+	publications {
+	    mavenJava(MavenPublication) {
+    		from components.java
+				artifact sourcesJar
+            	artifact javadocJar
+        }
+	}
+}
+
 
 pluginBundle {
 System.setProperty('gradle.publish.key', project.properties['gradle.publish.key'] ?: System.getenv('GRADLE_PUBLISH_KEY'))
@@ -59,38 +92,6 @@ dependencies {
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version:seleniumVersion
 }
 
-// custom tasks for creating source/javadoc jars
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-// add javadoc/source jar tasks as artifacts
-artifacts {
-    archives sourcesJar, javadocJar
-}
-
-// A custom task to show report on tests that have run
-task viewResults(dependsOn: ['test'] , type:Exec) {
-		workingDir './build/reports/tests'
-		commandLine 'cmd', '/c', 'start index.html'
-}
-
-publishing {
-	publications {
-	    mavenJava(MavenPublication) {
-    		from components.java
-    		
-		artifact sourcesJar
-		artifact javadocJar
-        }
-	}
-}
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
@@ -102,7 +103,7 @@ bintray {
         desc = 'lfrgs-selenium-commons'
 		licenses = ['Apache-2.0']
 		userOrg = System.getenv('BINTRAY_USER')
-        labels = ['lfrgs-selenium-commons', 'test', 'selenium', 'liferay', 'gs', 'funtionaltest', 'BDD', 'aceptancetest']
+        labels = ['lfrgs-selenium-commons', 'test', 'selenium', 'liferay', 'gs']
         licenses = ['Apache-2.0']
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/manoelcyreno/lfrgs-selenium-commons.git'
@@ -111,6 +112,8 @@ bintray {
             desc = 'lfrgs-selenium-commons: Selenium framework for Liferay GS projects'
             released  = new Date()
             vcsTag = project.version
+            attributes = ['gradle-plugin': 'gradle.plugin.com.liferay.gs.testFramework:lfrgs-selenium-commons']
         }
     }
 }
+
