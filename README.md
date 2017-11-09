@@ -1,8 +1,10 @@
-# Welcome to Framework Tests based on Selenium
+# This project is deprecated/was discontinued, the new one is: [Selenium Commons Framework](https://bitbucket.org/gs-br/frw-selenium-commons)
+
+## Welcome to Framework Tests based on Selenium
 
 The Framework Tests based on Selenium is one tools with focus on accelerate the development of automated tests process, creating a minimum database of infrastructure to be used in any kind of GS fullcycle project.
 
-## Goal of wiki project
+### Goal of wiki project
 
 Centralize all information related to the development of automated tests of the project, to allow quick access to them.
 
