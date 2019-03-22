@@ -27,7 +27,7 @@ description = """Liferay GS Selenium Commons Framework"""
 // Version X.Y.Z = X, When changing the API
 // Version X.Y.Z = Y, When adding features while maintaining compatibility
 // Version X.Y.Z = Z, When to fix failures while maintaining compatibility
-version = '2.1.5'
+version = '3.0.0'
 group = 'com.liferay.gs'
 // custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -62,24 +62,6 @@ publishing {
 	}
 }
 
-
-pluginBundle {
-System.setProperty('gradle.publish.key', project.properties['gradle.publish.key'] ?: System.getenv('GRADLE_PUBLISH_KEY'))
-System.setProperty('gradle.publish.secret', project.properties['gradle.publish.secret'] ?: System.getenv('GRADLE_PUBLISH_SECRET'))
-
-  website = 'https://github.com/manoelcyreno/lfrgs-selenium-commons'
-  vcsUrl = 'https://github.com/manoelcyreno/lfrgs-selenium-commons'
-  description = 'lfrgs-selenium-commons: Selenium framework for Liferay GS projects!'
-  tags = ['lfrgs-selenium-commons', 'test', 'selenium', 'liferay', 'gs', 'funtionaltest', 'BDD', 'aceptancetest']
-
-  plugins {
-    seleniumCommonsPlugin {
-      id = 'com.liferay.gs.testFramework'
-      displayName = 'Liferay GS Selenium Commons Framework'
-    }
-  }
-}
-
 ext.junitVersion = '4.12'
 ext.seleniumVersion = '3.4.0'
 
@@ -92,6 +74,19 @@ dependencies {
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version:seleniumVersion
 }
 
+pluginBundle {
+  website = 'https://bitbucket.org/gs-br/frw-selenium-commons'
+  vcsUrl = 'https://bitbucket.org/gs-br/frw-selenium-commons'
+  description = 'Selenium framework for Liferay GS projects!'
+  tags = ['frw-selenium-commons', 'test', 'selenium', 'liferay', 'gs', 'funtionaltest', 'BDD', 'aceptancetest']
+
+  plugins {
+    seleniumCommonsPlugin {
+      id = 'com.liferay.gs.testFramework'
+      displayName = 'Liferay GS Selenium Commons Framework'
+    }
+  }
+}
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
@@ -99,21 +94,20 @@ bintray {
     publications = ['mavenJava']
     pkg {
         repo = 'maven'
-        name = 'lfrgs-selenium-commons'
-        desc = 'lfrgs-selenium-commons'
+        name = 'frw-selenium-commons'
+        desc = 'Common Selenium framework'
 		licenses = ['Apache-2.0']
 		userOrg = System.getenv('BINTRAY_USER')
-        labels = ['lfrgs-selenium-commons', 'test', 'selenium', 'liferay', 'gs']
+        labels = ['frw-selenium-commons', 'test', 'selenium', 'liferay', 'gs']
         licenses = ['Apache-2.0']
         publicDownloadNumbers = true
-        vcsUrl = 'https://github.com/manoelcyreno/lfrgs-selenium-commons.git'
+        vcsUrl = 'https://bitbucket.org/gs-br/frw-selenium-commons.git'
         version {
             name = project.version
-            desc = 'lfrgs-selenium-commons: Selenium framework for Liferay GS projects'
+            desc = 'Common Selenium framework'
             released  = new Date()
             vcsTag = project.version
-            attributes = ['gradle-plugin': 'gradle.plugin.com.liferay.gs.testFramework:lfrgs-selenium-commons']
+            attributes = ['gradle-plugin': 'gradle.plugin.com.liferay.gs.testFramework:frw-selenium-commons']
         }
     }
 }
-

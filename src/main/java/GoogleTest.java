@@ -2,70 +2,95 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.liferay.gs.testFramework.BaseTestCase;
-import com.liferay.gs.testFramework.Selenium;
-import com.liferay.gs.testFramework.SeleniumReadPropertyKeys;
-import com.liferay.gs.testFramework.SeleniumWaitMethods;
+import com.liferay.gs.testFramework.FunctionalTest;
+import com.liferay.gs.testFramework.core.SeleniumReadPropertyKeys;
+import com.liferay.gs.testFramework.utils.SeleniumCommonMethods;
 
-public class GoogleTest extends BaseTestCase {
-
+public class GoogleTest extends FunctionalTest {
+	
 	private static By searchLocator = By.name("q");
+	
+	private SeleniumCommonMethods scm = new SeleniumCommonMethods(getWebDriver());
 
 	@Before
 	public void setUp() {
 		// SeleniumReadPropertyKeys.DRIVER.get(SeleniumReadPropertyKeys.getUrlToHome());
-		SeleniumReadPropertyKeys.DRIVER.get("http://www.google.com");
-		SeleniumReadPropertyKeys.DRIVER.manage().timeouts().implicitlyWait(SeleniumReadPropertyKeys.getTimeOut(), TimeUnit.SECONDS);
-	}
-
-	@After
-	public void after() {
-	}
-
-	@AfterClass
-	public static void tearDown() {
-		Selenium.quit();
+		getWebDriver().get("http://www.google.com");
+		getWebDriver().manage().timeouts().implicitlyWait(SeleniumReadPropertyKeys.getTimeOut(), TimeUnit.SECONDS);
 	}
 
 	/*
 	 * this test should fail purposely
 	 */
-	@Test
+	@Ignore
 	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithWrongTitle() {
-		SeleniumWaitMethods.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
-				ExpectedConditions::elementToBeClickable);
-		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).clear();
-		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).sendKeys("seleniumhq");
-		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).sendKeys(Keys.ENTER);
-		SeleniumWaitMethods.findElementWithWaitDriver(By.linkText("Selenium - Web Browser Automation"),
-				ExpectedConditions::visibilityOfElementLocated, ExpectedConditions::elementToBeClickable);
-		SeleniumReadPropertyKeys.DRIVER.findElement(By.linkText("Selenium - Web Browser Automation")).click();
-		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.titleContains("Automation"));
-		assertEquals("Selenium - Web Browser Automation2", SeleniumReadPropertyKeys.DRIVER.getTitle());
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq2", getWebDriver().getTitle());
 	}
 
 	/*
 	 * this test should pass
 	 */
 	@Test
-	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle() {
-		SeleniumWaitMethods.findElementWithWaitDriver(searchLocator, ExpectedConditions::visibilityOfElementLocated,
-				ExpectedConditions::elementToBeClickable);
-		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).clear();
-		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).sendKeys("seleniumhq");
-		SeleniumReadPropertyKeys.DRIVER.findElement(searchLocator).sendKeys(Keys.ENTER);
-		SeleniumWaitMethods.findElementWithWaitDriver(By.linkText("Selenium - Web Browser Automation"),
-				ExpectedConditions::visibilityOfElementLocated, ExpectedConditions::elementToBeClickable);
-		SeleniumReadPropertyKeys.DRIVER.findElement(By.linkText("Selenium - Web Browser Automation")).click();
-		SeleniumWaitMethods.getWaitDriver().until(ExpectedConditions.titleContains("Automation"));
-		assertEquals("Selenium - Web Browser Automation", SeleniumReadPropertyKeys.DRIVER.getTitle());
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle1() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
+	}
+	@Test
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle2() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
+	}
+
+	@Test
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle3() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
+	}
+	@Test
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle4() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
+	}
+	@Test
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle5() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
+	}
+	@Test
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle6() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
+	}
+	@Test
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle7() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
+	}
+	@Test
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle8() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
+	}
+	@Test
+	public void goToGooglePageAndAccessTheFirstResultAndCompareTheTitleWithRightTitle9() {
+		scm.clearAndWriteOnElement(searchLocator, "seleniumhq");
+		scm.writeOnElement(searchLocator, Keys.ENTER);
+		assertEquals("seleniumhq - Pesquisa Google", getWebDriver().getTitle());
 	}
 }

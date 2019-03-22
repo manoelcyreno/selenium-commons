@@ -1,5 +1,8 @@
 package com.liferay.gs.testFramework;
 
+/**
+ * @author Manoel Cyreno
+ */
 public class seleniumCommonsPlugin {
 
 	public static void main(String[] args) {
