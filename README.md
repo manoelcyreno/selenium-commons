@@ -1,8 +1,11 @@
-# This project is deprecated/was discontinued, the new one is: [Selenium Commons Framework](https://bitbucket.org/gs-br/frw-selenium-commons)
+# This project is a draft for the:
+- Official repository: [Selenium Commons Framework](https://bitbucket.org/gs-br/frw-selenium-commons)
+- Bintray: [frw-selenium-commons](https://bintray.com/manoelcyreno/maven/frw-selenium-commons)
+- Gradle Plugins: [frw-selenium-commons](https://plugins.gradle.org/plugin/com.liferay.gs.testFramework)
 
 ## Welcome to Framework Tests based on Selenium
 
-The Framework Tests based on Selenium is one tools with focus on accelerate the development of automated tests process, creating a minimum database of infrastructure to be used in any kind of GS fullcycle project.
+The Framework Tests based on Selenium is one tools with focus on accelerate the development of automated tests process, creating a minimum database of infrastructure to be used in any kind project.
 
 ### Goal of wiki project
 
