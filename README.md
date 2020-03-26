@@ -1,5 +1,5 @@
 # This project is a draft for the:
-- Official repository: [Selenium Commons Framework](https://bitbucket.org/gs-br/frw-selenium-commons)
+- Official repository: [Selenium Commons Framework](https://github.com/liferay-gs-latam/frw-selenium-commons)
 - Bintray: [frw-selenium-commons](https://bintray.com/manoelcyreno/maven/frw-selenium-commons)
 - Gradle Plugins: [frw-selenium-commons](https://plugins.gradle.org/plugin/com.liferay.gs.testFramework)
 
