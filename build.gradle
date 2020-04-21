@@ -63,7 +63,7 @@ publishing {
 }
 
 ext.junitVersion = '4.12'
-ext.seleniumVersion = '3.4.0'
+ext.seleniumVersion = '3.5.2'
 
 dependencies {
 	compile group: 'junit', name: 'junit', version:junitVersion
