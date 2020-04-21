@@ -28,7 +28,7 @@ description = """Liferay GS Selenium Commons Framework"""
 // Version X.Y.Z = X, When changing the API
 // Version X.Y.Z = Y, When adding features while maintaining compatibility
 // Version X.Y.Z = Z, When to fix failures while maintaining compatibility
-version = '3.0.0'
+version = '3.0.1'
 group = 'com.liferay.gs'
 // custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -76,9 +76,9 @@ dependencies {
 }
 
 pluginBundle {
-  website = 'https://bitbucket.org/gs-br/frw-selenium-commons'
-  vcsUrl = 'https://bitbucket.org/gs-br/frw-selenium-commons'
-  description = 'Selenium framework for Liferay GS projects!'
+  website = 'https://github.com/manoelcyreno/selenium-commons'
+  vcsUrl = 'https://github.com/manoelcyreno/selenium-commons'
+  description = 'Selenium framework for web projects!'
   tags = ['frw-selenium-commons', 'test', 'selenium', 'liferay', 'gs', 'funtionaltest', 'BDD', 'aceptancetest']
 
   plugins {
@@ -102,7 +102,7 @@ bintray {
         labels = ['frw-selenium-commons', 'test', 'selenium', 'liferay', 'gs']
         licenses = ['Apache-2.0']
         publicDownloadNumbers = true
-        vcsUrl = 'https://bitbucket.org/gs-br/frw-selenium-commons.git'
+        vcsUrl = 'https://github.com/manoelcyreno/selenium-commons'
         version {
             name = project.version
             desc = 'Common Selenium framework'
