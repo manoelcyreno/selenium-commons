@@ -1,19 +1,10 @@
-import org.junit.AfterClass;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.SelectClasses;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
-import com.liferay.gs.testFramework.core.ConcurrentSuite;
-import com.liferay.gs.testFramework.driver.WebDriverManager;
-
-@RunWith(ConcurrentSuite.class)
-@Suite.SuiteClasses({ GoogleTest.class, GoogleTest2.class })
+@RunWith(JUnitPlatform.class)
+@SelectClasses( { GoogleTest.class, Google2Test.class } )
 public class RunAllTests {
-
-	@AfterClass
-	public static void afterClass() {
-		_webDriverManager.quitAll();
-	}
-
-	private static WebDriverManager _webDriverManager = new WebDriverManager();
-
+	
+	//TODO: Try to find some way to close all browsers.
 }
