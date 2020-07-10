@@ -1,5 +1,5 @@
 plugins {
-    id "com.jfrog.bintray" version "1.7"
+    id "com.jfrog.bintray" version "1.+"
     id "de.undercouch.download" version "3.1.2"
     id "com.gradle.plugin-publish" version "0.11.0"
     id "org.sonarqube" version "2.7"
@@ -107,6 +107,10 @@ bintray {
         licenses = ['Apache-2.0']
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/manoelcyreno/selenium-commons'
+        
+        githubRepo = 'manoelcyreno/selenium-commons' //Optional Github repository
+        githubReleaseNotesFile = 'README.md' //Optional Github readme file
+        
         version {
             name = project.version
             desc = 'Common Selenium framework'
