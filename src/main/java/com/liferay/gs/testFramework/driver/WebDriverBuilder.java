@@ -73,15 +73,9 @@ public final class WebDriverBuilder {
 
 	private static FirefoxDriver _configureDefaultFF() {
 		if (_geckoDriverWasConfigured()) {
-			DesiredCapabilities cap = DesiredCapabilities.firefox();
 			System.setProperty("webdriver.gecko.driver", _geckoDriver_Path);
-			cap.setCapability("marionette", true);
 
-			FirefoxOptions options = new FirefoxOptions();
-
-			options.addCapabilities(cap);
-
-			return new FirefoxDriver(options);
+			return new FirefoxDriver();
 		} else {
 			System.out.println(_configurationErrorMessage);
 		}

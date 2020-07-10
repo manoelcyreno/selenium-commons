@@ -1,5 +1,5 @@
 plugins {
-    id "com.jfrog.bintray" version "1.7"
+    id "com.jfrog.bintray" version "1.8.5"
     id "de.undercouch.download" version "3.1.2"
     id "com.gradle.plugin-publish" version "0.11.0"
     id "org.sonarqube" version "2.7"
@@ -28,7 +28,7 @@ description = """Liferay GS Selenium Commons Framework"""
 // Version X.Y.Z = X, When changing the API
 // Version X.Y.Z = Y, When adding features while maintaining compatibility
 // Version X.Y.Z = Z, When to fix failures while maintaining compatibility
-version = '3.0.1'
+version = '3.0.2'
 group = 'com.liferay.gs'
 // custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -64,9 +64,10 @@ publishing {
 }
 
 ext.junitVersion = '4.12'
-ext.seleniumVersion = '3.5.2'
+ext.seleniumVersion = '3.141.59'
 
 dependencies {
+	compile group: 'commons-io', name: 'commons-io', version: '2.5'
 	compile group: 'junit', name: 'junit', version:junitVersion
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version:seleniumVersion
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version:seleniumVersion
